@@ -35,7 +35,7 @@ public class NewSortController {
 	}
 	
 //	查找所有
-	@RequestMapping(value = "update")
+	@RequestMapping(value = "findall")
 	public JsonObject newSortFindAll() {
 		nssi.newSortFindAll();
 		return null;
