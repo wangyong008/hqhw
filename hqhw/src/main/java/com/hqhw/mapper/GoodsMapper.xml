@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.hqhw.pojo.Goods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="uploadtime" property="uploadtime" jdbcType="TIMESTAMP" />
+    <result column="viewflag" property="viewflag" jdbcType="INTEGER" />
+    <result column="stock" property="stock" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="desrciptiong" property="desrciptiong" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, type, uploadtime, viewflag, stock, source, desrciptiong, price
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hqhw.pojo.GoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqhw.pojo.GoodsExample" >
+    delete from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqhw.pojo.Goods" >
+    insert into goods (id, name, type, 
+      uploadtime, viewflag, stock, 
+      source, desrciptiong, price
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{uploadtime,jdbcType=TIMESTAMP}, #{viewflag,jdbcType=INTEGER}, #{stock,jdbcType=INTEGER}, 
+      #{source,jdbcType=VARCHAR}, #{desrciptiong,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqhw.pojo.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="uploadtime != null" >
+        uploadtime,
+      </if>
+      <if test="viewflag != null" >
+        viewflag,
+      </if>
+      <if test="stock != null" >
+        stock,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="desrciptiong != null" >
+        desrciptiong,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="viewflag != null" >
+        #{viewflag,jdbcType=INTEGER},
+      </if>
+      <if test="stock != null" >
+        #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="desrciptiong != null" >
+        #{desrciptiong,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqhw.pojo.GoodsExample" resultType="java.lang.Integer" >
+    select count(*) from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update goods
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.uploadtime != null" >
+        uploadtime = #{record.uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.viewflag != null" >
+        viewflag = #{record.viewflag,jdbcType=INTEGER},
+      </if>
+      <if test="record.stock != null" >
+        stock = #{record.stock,jdbcType=INTEGER},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desrciptiong != null" >
+        desrciptiong = #{record.desrciptiong,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update goods
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      uploadtime = #{record.uploadtime,jdbcType=TIMESTAMP},
+      viewflag = #{record.viewflag,jdbcType=INTEGER},
+      stock = #{record.stock,jdbcType=INTEGER},
+      source = #{record.source,jdbcType=VARCHAR},
+      desrciptiong = #{record.desrciptiong,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqhw.pojo.Goods" >
+    update goods
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="uploadtime != null" >
+        uploadtime = #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="viewflag != null" >
+        viewflag = #{viewflag,jdbcType=INTEGER},
+      </if>
+      <if test="stock != null" >
+        stock = #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="desrciptiong != null" >
+        desrciptiong = #{desrciptiong,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqhw.pojo.Goods" >
+    update goods
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      uploadtime = #{uploadtime,jdbcType=TIMESTAMP},
+      viewflag = #{viewflag,jdbcType=INTEGER},
+      stock = #{stock,jdbcType=INTEGER},
+      source = #{source,jdbcType=VARCHAR},
+      desrciptiong = #{desrciptiong,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

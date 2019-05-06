@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.mapper.NewsMapper" >
+  <resultMap id="BaseResultMap" type="com.hqhw.pojo.News" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="diqu" property="diqu" jdbcType="VARCHAR" />
+    <result column="viewFlag" property="viewflag" jdbcType="INTEGER" />
+    <result column="sortId" property="sortid" jdbcType="INTEGER" />
+    <result column="addrflage" property="addrflage" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="clicknum" property="clicknum" jdbcType="INTEGER" />
+    <result column="publishtime" property="publishtime" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="Seokeyword" property="seokeyword" jdbcType="VARCHAR" />
+    <result column="Seodescription" property="seodescription" jdbcType="VARCHAR" />
+    <result column="outId" property="outid" jdbcType="INTEGER" />
+    <result column="filepath" property="filepath" jdbcType="VARCHAR" />
+    <result column="video" property="video" jdbcType="VARCHAR" />
+    <result column="zan" property="zan" jdbcType="INTEGER" />
+    <result column="cai" property="cai" jdbcType="INTEGER" />
+    <result column="columnType" property="columntype" jdbcType="INTEGER" />
+    <result column="shoucang" property="shoucang" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="specialType" property="specialtype" jdbcType="INTEGER" />
+    <result column="Column_22" property="column22" jdbcType="CHAR" />
+    <result column="column_type" property="columnType" jdbcType="INTEGER" />
+    <result column="special_type" property="specialType" jdbcType="INTEGER" />
+    <result column="view_flag" property="viewFlag" jdbcType="INTEGER" />
+    <result column="sort_id" property="sortId" jdbcType="INTEGER" />
+    <result column="out_id" property="outId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hqhw.pojo.News" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, diqu, viewFlag, sortId, addrflage, source, title, author, clicknum, publishtime, 
+    image, Seokeyword, Seodescription, outId, filepath, video, zan, cai, columnType, 
+    shoucang, name, specialType, Column_22, column_type, special_type, view_flag, sort_id, 
+    out_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.hqhw.pojo.NewsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hqhw.pojo.NewsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqhw.pojo.NewsExample" >
+    delete from news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqhw.pojo.News" >
+    insert into news (id, diqu, viewFlag, 
+      sortId, addrflage, source, 
+      title, author, clicknum, 
+      publishtime, image, Seokeyword, 
+      Seodescription, outId, filepath, 
+      video, zan, cai, columnType, 
+      shoucang, name, specialType, 
+      Column_22, column_type, special_type, 
+      view_flag, sort_id, out_id, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{diqu,jdbcType=VARCHAR}, #{viewflag,jdbcType=INTEGER}, 
+      #{sortid,jdbcType=INTEGER}, #{addrflage,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{clicknum,jdbcType=INTEGER}, 
+      #{publishtime,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{seokeyword,jdbcType=VARCHAR}, 
+      #{seodescription,jdbcType=VARCHAR}, #{outid,jdbcType=INTEGER}, #{filepath,jdbcType=VARCHAR}, 
+      #{video,jdbcType=VARCHAR}, #{zan,jdbcType=INTEGER}, #{cai,jdbcType=INTEGER}, #{columntype,jdbcType=INTEGER}, 
+      #{shoucang,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{specialtype,jdbcType=INTEGER}, 
+      #{column22,jdbcType=CHAR}, #{columnType,jdbcType=INTEGER}, #{specialType,jdbcType=INTEGER}, 
+      #{viewFlag,jdbcType=INTEGER}, #{sortId,jdbcType=INTEGER}, #{outId,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqhw.pojo.News" >
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="diqu != null" >
+        diqu,
+      </if>
+      <if test="viewflag != null" >
+        viewFlag,
+      </if>
+      <if test="sortid != null" >
+        sortId,
+      </if>
+      <if test="addrflage != null" >
+        addrflage,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="clicknum != null" >
+        clicknum,
+      </if>
+      <if test="publishtime != null" >
+        publishtime,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="seokeyword != null" >
+        Seokeyword,
+      </if>
+      <if test="seodescription != null" >
+        Seodescription,
+      </if>
+      <if test="outid != null" >
+        outId,
+      </if>
+      <if test="filepath != null" >
+        filepath,
+      </if>
+      <if test="video != null" >
+        video,
+      </if>
+      <if test="zan != null" >
+        zan,
+      </if>
+      <if test="cai != null" >
+        cai,
+      </if>
+      <if test="columntype != null" >
+        columnType,
+      </if>
+      <if test="shoucang != null" >
+        shoucang,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="specialtype != null" >
+        specialType,
+      </if>
+      <if test="column22 != null" >
+        Column_22,
+      </if>
+      <if test="columnType != null" >
+        column_type,
+      </if>
+      <if test="specialType != null" >
+        special_type,
+      </if>
+      <if test="viewFlag != null" >
+        view_flag,
+      </if>
+      <if test="sortId != null" >
+        sort_id,
+      </if>
+      <if test="outId != null" >
+        out_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="diqu != null" >
+        #{diqu,jdbcType=VARCHAR},
+      </if>
+      <if test="viewflag != null" >
+        #{viewflag,jdbcType=INTEGER},
+      </if>
+      <if test="sortid != null" >
+        #{sortid,jdbcType=INTEGER},
+      </if>
+      <if test="addrflage != null" >
+        #{addrflage,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="clicknum != null" >
+        #{clicknum,jdbcType=INTEGER},
+      </if>
+      <if test="publishtime != null" >
+        #{publishtime,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="seokeyword != null" >
+        #{seokeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="seodescription != null" >
+        #{seodescription,jdbcType=VARCHAR},
+      </if>
+      <if test="outid != null" >
+        #{outid,jdbcType=INTEGER},
+      </if>
+      <if test="filepath != null" >
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="video != null" >
+        #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="zan != null" >
+        #{zan,jdbcType=INTEGER},
+      </if>
+      <if test="cai != null" >
+        #{cai,jdbcType=INTEGER},
+      </if>
+      <if test="columntype != null" >
+        #{columntype,jdbcType=INTEGER},
+      </if>
+      <if test="shoucang != null" >
+        #{shoucang,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="specialtype != null" >
+        #{specialtype,jdbcType=INTEGER},
+      </if>
+      <if test="column22 != null" >
+        #{column22,jdbcType=CHAR},
+      </if>
+      <if test="columnType != null" >
+        #{columnType,jdbcType=INTEGER},
+      </if>
+      <if test="specialType != null" >
+        #{specialType,jdbcType=INTEGER},
+      </if>
+      <if test="viewFlag != null" >
+        #{viewFlag,jdbcType=INTEGER},
+      </if>
+      <if test="sortId != null" >
+        #{sortId,jdbcType=INTEGER},
+      </if>
+      <if test="outId != null" >
+        #{outId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqhw.pojo.NewsExample" resultType="java.lang.Integer" >
+    select count(*) from news
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update news
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.diqu != null" >
+        diqu = #{record.diqu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.viewflag != null" >
+        viewFlag = #{record.viewflag,jdbcType=INTEGER},
+      </if>
+      <if test="record.sortid != null" >
+        sortId = #{record.sortid,jdbcType=INTEGER},
+      </if>
+      <if test="record.addrflage != null" >
+        addrflage = #{record.addrflage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.author != null" >
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clicknum != null" >
+        clicknum = #{record.clicknum,jdbcType=INTEGER},
+      </if>
+      <if test="record.publishtime != null" >
+        publishtime = #{record.publishtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seokeyword != null" >
+        Seokeyword = #{record.seokeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seodescription != null" >
+        Seodescription = #{record.seodescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outid != null" >
+        outId = #{record.outid,jdbcType=INTEGER},
+      </if>
+      <if test="record.filepath != null" >
+        filepath = #{record.filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.video != null" >
+        video = #{record.video,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zan != null" >
+        zan = #{record.zan,jdbcType=INTEGER},
+      </if>
+      <if test="record.cai != null" >
+        cai = #{record.cai,jdbcType=INTEGER},
+      </if>
+      <if test="record.columntype != null" >
+        columnType = #{record.columntype,jdbcType=INTEGER},
+      </if>
+      <if test="record.shoucang != null" >
+        shoucang = #{record.shoucang,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialtype != null" >
+        specialType = #{record.specialtype,jdbcType=INTEGER},
+      </if>
+      <if test="record.column22 != null" >
+        Column_22 = #{record.column22,jdbcType=CHAR},
+      </if>
+      <if test="record.columnType != null" >
+        column_type = #{record.columnType,jdbcType=INTEGER},
+      </if>
+      <if test="record.specialType != null" >
+        special_type = #{record.specialType,jdbcType=INTEGER},
+      </if>
+      <if test="record.viewFlag != null" >
+        view_flag = #{record.viewFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.sortId != null" >
+        sort_id = #{record.sortId,jdbcType=INTEGER},
+      </if>
+      <if test="record.outId != null" >
+        out_id = #{record.outId,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update news
+    set id = #{record.id,jdbcType=INTEGER},
+      diqu = #{record.diqu,jdbcType=VARCHAR},
+      viewFlag = #{record.viewflag,jdbcType=INTEGER},
+      sortId = #{record.sortid,jdbcType=INTEGER},
+      addrflage = #{record.addrflage,jdbcType=VARCHAR},
+      source = #{record.source,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      author = #{record.author,jdbcType=VARCHAR},
+      clicknum = #{record.clicknum,jdbcType=INTEGER},
+      publishtime = #{record.publishtime,jdbcType=VARCHAR},
+      image = #{record.image,jdbcType=VARCHAR},
+      Seokeyword = #{record.seokeyword,jdbcType=VARCHAR},
+      Seodescription = #{record.seodescription,jdbcType=VARCHAR},
+      outId = #{record.outid,jdbcType=INTEGER},
+      filepath = #{record.filepath,jdbcType=VARCHAR},
+      video = #{record.video,jdbcType=VARCHAR},
+      zan = #{record.zan,jdbcType=INTEGER},
+      cai = #{record.cai,jdbcType=INTEGER},
+      columnType = #{record.columntype,jdbcType=INTEGER},
+      shoucang = #{record.shoucang,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      specialType = #{record.specialtype,jdbcType=INTEGER},
+      Column_22 = #{record.column22,jdbcType=CHAR},
+      column_type = #{record.columnType,jdbcType=INTEGER},
+      special_type = #{record.specialType,jdbcType=INTEGER},
+      view_flag = #{record.viewFlag,jdbcType=INTEGER},
+      sort_id = #{record.sortId,jdbcType=INTEGER},
+      out_id = #{record.outId,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update news
+    set id = #{record.id,jdbcType=INTEGER},
+      diqu = #{record.diqu,jdbcType=VARCHAR},
+      viewFlag = #{record.viewflag,jdbcType=INTEGER},
+      sortId = #{record.sortid,jdbcType=INTEGER},
+      addrflage = #{record.addrflage,jdbcType=VARCHAR},
+      source = #{record.source,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      author = #{record.author,jdbcType=VARCHAR},
+      clicknum = #{record.clicknum,jdbcType=INTEGER},
+      publishtime = #{record.publishtime,jdbcType=VARCHAR},
+      image = #{record.image,jdbcType=VARCHAR},
+      Seokeyword = #{record.seokeyword,jdbcType=VARCHAR},
+      Seodescription = #{record.seodescription,jdbcType=VARCHAR},
+      outId = #{record.outid,jdbcType=INTEGER},
+      filepath = #{record.filepath,jdbcType=VARCHAR},
+      video = #{record.video,jdbcType=VARCHAR},
+      zan = #{record.zan,jdbcType=INTEGER},
+      cai = #{record.cai,jdbcType=INTEGER},
+      columnType = #{record.columntype,jdbcType=INTEGER},
+      shoucang = #{record.shoucang,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      specialType = #{record.specialtype,jdbcType=INTEGER},
+      Column_22 = #{record.column22,jdbcType=CHAR},
+      column_type = #{record.columnType,jdbcType=INTEGER},
+      special_type = #{record.specialType,jdbcType=INTEGER},
+      view_flag = #{record.viewFlag,jdbcType=INTEGER},
+      sort_id = #{record.sortId,jdbcType=INTEGER},
+      out_id = #{record.outId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqhw.pojo.News" >
+    update news
+    <set >
+      <if test="diqu != null" >
+        diqu = #{diqu,jdbcType=VARCHAR},
+      </if>
+      <if test="viewflag != null" >
+        viewFlag = #{viewflag,jdbcType=INTEGER},
+      </if>
+      <if test="sortid != null" >
+        sortId = #{sortid,jdbcType=INTEGER},
+      </if>
+      <if test="addrflage != null" >
+        addrflage = #{addrflage,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="clicknum != null" >
+        clicknum = #{clicknum,jdbcType=INTEGER},
+      </if>
+      <if test="publishtime != null" >
+        publishtime = #{publishtime,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="seokeyword != null" >
+        Seokeyword = #{seokeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="seodescription != null" >
+        Seodescription = #{seodescription,jdbcType=VARCHAR},
+      </if>
+      <if test="outid != null" >
+        outId = #{outid,jdbcType=INTEGER},
+      </if>
+      <if test="filepath != null" >
+        filepath = #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="video != null" >
+        video = #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="zan != null" >
+        zan = #{zan,jdbcType=INTEGER},
+      </if>
+      <if test="cai != null" >
+        cai = #{cai,jdbcType=INTEGER},
+      </if>
+      <if test="columntype != null" >
+        columnType = #{columntype,jdbcType=INTEGER},
+      </if>
+      <if test="shoucang != null" >
+        shoucang = #{shoucang,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="specialtype != null" >
+        specialType = #{specialtype,jdbcType=INTEGER},
+      </if>
+      <if test="column22 != null" >
+        Column_22 = #{column22,jdbcType=CHAR},
+      </if>
+      <if test="columnType != null" >
+        column_type = #{columnType,jdbcType=INTEGER},
+      </if>
+      <if test="specialType != null" >
+        special_type = #{specialType,jdbcType=INTEGER},
+      </if>
+      <if test="viewFlag != null" >
+        view_flag = #{viewFlag,jdbcType=INTEGER},
+      </if>
+      <if test="sortId != null" >
+        sort_id = #{sortId,jdbcType=INTEGER},
+      </if>
+      <if test="outId != null" >
+        out_id = #{outId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hqhw.pojo.News" >
+    update news
+    set diqu = #{diqu,jdbcType=VARCHAR},
+      viewFlag = #{viewflag,jdbcType=INTEGER},
+      sortId = #{sortid,jdbcType=INTEGER},
+      addrflage = #{addrflage,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      clicknum = #{clicknum,jdbcType=INTEGER},
+      publishtime = #{publishtime,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      Seokeyword = #{seokeyword,jdbcType=VARCHAR},
+      Seodescription = #{seodescription,jdbcType=VARCHAR},
+      outId = #{outid,jdbcType=INTEGER},
+      filepath = #{filepath,jdbcType=VARCHAR},
+      video = #{video,jdbcType=VARCHAR},
+      zan = #{zan,jdbcType=INTEGER},
+      cai = #{cai,jdbcType=INTEGER},
+      columnType = #{columntype,jdbcType=INTEGER},
+      shoucang = #{shoucang,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      specialType = #{specialtype,jdbcType=INTEGER},
+      Column_22 = #{column22,jdbcType=CHAR},
+      column_type = #{columnType,jdbcType=INTEGER},
+      special_type = #{specialType,jdbcType=INTEGER},
+      view_flag = #{viewFlag,jdbcType=INTEGER},
+      sort_id = #{sortId,jdbcType=INTEGER},
+      out_id = #{outId,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqhw.pojo.News" >
+    update news
+    set diqu = #{diqu,jdbcType=VARCHAR},
+      viewFlag = #{viewflag,jdbcType=INTEGER},
+      sortId = #{sortid,jdbcType=INTEGER},
+      addrflage = #{addrflage,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      clicknum = #{clicknum,jdbcType=INTEGER},
+      publishtime = #{publishtime,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      Seokeyword = #{seokeyword,jdbcType=VARCHAR},
+      Seodescription = #{seodescription,jdbcType=VARCHAR},
+      outId = #{outid,jdbcType=INTEGER},
+      filepath = #{filepath,jdbcType=VARCHAR},
+      video = #{video,jdbcType=VARCHAR},
+      zan = #{zan,jdbcType=INTEGER},
+      cai = #{cai,jdbcType=INTEGER},
+      columnType = #{columntype,jdbcType=INTEGER},
+      shoucang = #{shoucang,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      specialType = #{specialtype,jdbcType=INTEGER},
+      Column_22 = #{column22,jdbcType=CHAR},
+      column_type = #{columnType,jdbcType=INTEGER},
+      special_type = #{specialType,jdbcType=INTEGER},
+      view_flag = #{viewFlag,jdbcType=INTEGER},
+      sort_id = #{sortId,jdbcType=INTEGER},
+      out_id = #{outId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findBySeTi" parameterType="com.hqhw.pojo.News" resultType="com.hqhw.pojo.News">
+  		select * from news where 
+  		<if test="seokeyword != null" >
+        seokeyword like #{seokeyword} or
+      </if>
+      <if test="title != null" >
+        title like #{title}
+      </if>
+  </select>
+  
+  	<select id="findBySort" parameterType="String" resultType="com.hqhw.pojo.News">
+		select id, title from news where sortid = (select id from newSort where name = #{name}) and viewflag = 1 ORDER BY id DESC LIMIT 1
+	</select>
+</mapper>

@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.mapper.StaffMapper" >
+  <resultMap id="BaseResultMap" type="com.hqhw.pojo.Staff" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="region" property="region" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="supervisePhone" property="supervisephone" jdbcType="VARCHAR" />
+    <result column="belongId" property="belongid" jdbcType="INTEGER" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="viewflag" property="viewflag" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, number, name, sex, age, department, position, education, phone, region, address, 
+    supervisePhone, belongId, photo, viewflag, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hqhw.pojo.StaffExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from staff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from staff
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from staff
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqhw.pojo.StaffExample" >
+    delete from staff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqhw.pojo.Staff" >
+    insert into staff (id, number, name, 
+      sex, age, department, 
+      position, education, phone, 
+      region, address, supervisePhone, 
+      belongId, photo, viewflag, 
+      remark)
+    values (#{id,jdbcType=INTEGER}, #{number,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{region,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{supervisephone,jdbcType=VARCHAR}, 
+      #{belongid,jdbcType=INTEGER}, #{photo,jdbcType=VARCHAR}, #{viewflag,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqhw.pojo.Staff" >
+    insert into staff
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="region != null" >
+        region,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="supervisephone != null" >
+        supervisePhone,
+      </if>
+      <if test="belongid != null" >
+        belongId,
+      </if>
+      <if test="photo != null" >
+        photo,
+      </if>
+      <if test="viewflag != null" >
+        viewflag,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisephone != null" >
+        #{supervisephone,jdbcType=VARCHAR},
+      </if>
+      <if test="belongid != null" >
+        #{belongid,jdbcType=INTEGER},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="viewflag != null" >
+        #{viewflag,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqhw.pojo.StaffExample" resultType="java.lang.Integer" >
+    select count(*) from staff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update staff
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null" >
+        age = #{record.age,jdbcType=VARCHAR},
+      </if>
+      <if test="record.department != null" >
+        department = #{record.department,jdbcType=VARCHAR},
+      </if>
+      <if test="record.position != null" >
+        position = #{record.position,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null" >
+        education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.region != null" >
+        region = #{record.region,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supervisephone != null" >
+        supervisePhone = #{record.supervisephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.belongid != null" >
+        belongId = #{record.belongid,jdbcType=INTEGER},
+      </if>
+      <if test="record.photo != null" >
+        photo = #{record.photo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.viewflag != null" >
+        viewflag = #{record.viewflag,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update staff
+    set id = #{record.id,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=VARCHAR},
+      department = #{record.department,jdbcType=VARCHAR},
+      position = #{record.position,jdbcType=VARCHAR},
+      education = #{record.education,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      region = #{record.region,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      supervisePhone = #{record.supervisephone,jdbcType=VARCHAR},
+      belongId = #{record.belongid,jdbcType=INTEGER},
+      photo = #{record.photo,jdbcType=VARCHAR},
+      viewflag = #{record.viewflag,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqhw.pojo.Staff" >
+    update staff
+    <set >
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="supervisephone != null" >
+        supervisePhone = #{supervisephone,jdbcType=VARCHAR},
+      </if>
+      <if test="belongid != null" >
+        belongId = #{belongid,jdbcType=INTEGER},
+      </if>
+      <if test="photo != null" >
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="viewflag != null" >
+        viewflag = #{viewflag,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqhw.pojo.Staff" >
+    update staff
+    set number = #{number,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      region = #{region,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      supervisePhone = #{supervisephone,jdbcType=VARCHAR},
+      belongId = #{belongid,jdbcType=INTEGER},
+      photo = #{photo,jdbcType=VARCHAR},
+      viewflag = #{viewflag,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

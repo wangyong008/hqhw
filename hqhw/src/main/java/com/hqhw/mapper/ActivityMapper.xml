@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.mapper.ActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.hqhw.pojo.Activity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="arear" property="arear" jdbcType="VARCHAR" />
+    <result column="viewflag" property="viewflag" jdbcType="INTEGER" />
+    <result column="sortid" property="sortid" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="uId" property="uid" jdbcType="INTEGER" />
+    <result column="clicknum" property="clicknum" jdbcType="INTEGER" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="seoketwords" property="seoketwords" jdbcType="VARCHAR" />
+    <result column="seodescription" property="seodescription" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="VARCHAR" />
+    <result column="starttime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="addreass" property="addreass" jdbcType="VARCHAR" />
+    <result column="jiezhitime" property="jiezhitime" jdbcType="TIMESTAMP" />
+    <result column="peoplenummax" property="peoplenummax" jdbcType="INTEGER" />
+    <result column="video" property="video" jdbcType="VARCHAR" />
+    <result column="activityType" property="activitytype" jdbcType="VARCHAR" />
+    <result column="activity_type" property="activityType" jdbcType="VARCHAR" />
+    <result column="u_id" property="uId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hqhw.pojo.Activity" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, arear, viewflag, sortid, source, uId, clicknum, image, seoketwords, seodescription, 
+    money, starttime, endtime, addreass, jiezhitime, peoplenummax, video, activityType, 
+    activity_type, u_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.hqhw.pojo.ActivityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hqhw.pojo.ActivityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from activity
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from activity
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqhw.pojo.ActivityExample" >
+    delete from activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqhw.pojo.Activity" >
+    insert into activity (id, name, arear, 
+      viewflag, sortid, source, 
+      uId, clicknum, image, 
+      seoketwords, seodescription, money, 
+      starttime, endtime, addreass, 
+      jiezhitime, peoplenummax, video, 
+      activityType, activity_type, u_id, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{arear,jdbcType=VARCHAR}, 
+      #{viewflag,jdbcType=INTEGER}, #{sortid,jdbcType=INTEGER}, #{source,jdbcType=VARCHAR}, 
+      #{uid,jdbcType=INTEGER}, #{clicknum,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, 
+      #{seoketwords,jdbcType=VARCHAR}, #{seodescription,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR}, 
+      #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{addreass,jdbcType=VARCHAR}, 
+      #{jiezhitime,jdbcType=TIMESTAMP}, #{peoplenummax,jdbcType=INTEGER}, #{video,jdbcType=VARCHAR}, 
+      #{activitytype,jdbcType=VARCHAR}, #{activityType,jdbcType=VARCHAR}, #{uId,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqhw.pojo.Activity" >
+    insert into activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="arear != null" >
+        arear,
+      </if>
+      <if test="viewflag != null" >
+        viewflag,
+      </if>
+      <if test="sortid != null" >
+        sortid,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="uid != null" >
+        uId,
+      </if>
+      <if test="clicknum != null" >
+        clicknum,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="seoketwords != null" >
+        seoketwords,
+      </if>
+      <if test="seodescription != null" >
+        seodescription,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="starttime != null" >
+        starttime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="addreass != null" >
+        addreass,
+      </if>
+      <if test="jiezhitime != null" >
+        jiezhitime,
+      </if>
+      <if test="peoplenummax != null" >
+        peoplenummax,
+      </if>
+      <if test="video != null" >
+        video,
+      </if>
+      <if test="activitytype != null" >
+        activityType,
+      </if>
+      <if test="activityType != null" >
+        activity_type,
+      </if>
+      <if test="uId != null" >
+        u_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="arear != null" >
+        #{arear,jdbcType=VARCHAR},
+      </if>
+      <if test="viewflag != null" >
+        #{viewflag,jdbcType=INTEGER},
+      </if>
+      <if test="sortid != null" >
+        #{sortid,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="clicknum != null" >
+        #{clicknum,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="seoketwords != null" >
+        #{seoketwords,jdbcType=VARCHAR},
+      </if>
+      <if test="seodescription != null" >
+        #{seodescription,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addreass != null" >
+        #{addreass,jdbcType=VARCHAR},
+      </if>
+      <if test="jiezhitime != null" >
+        #{jiezhitime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="peoplenummax != null" >
+        #{peoplenummax,jdbcType=INTEGER},
+      </if>
+      <if test="video != null" >
+        #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="activitytype != null" >
+        #{activitytype,jdbcType=VARCHAR},
+      </if>
+      <if test="activityType != null" >
+        #{activityType,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqhw.pojo.ActivityExample" resultType="java.lang.Integer" >
+    select count(*) from activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update activity
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arear != null" >
+        arear = #{record.arear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.viewflag != null" >
+        viewflag = #{record.viewflag,jdbcType=INTEGER},
+      </if>
+      <if test="record.sortid != null" >
+        sortid = #{record.sortid,jdbcType=INTEGER},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null" >
+        uId = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.clicknum != null" >
+        clicknum = #{record.clicknum,jdbcType=INTEGER},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seoketwords != null" >
+        seoketwords = #{record.seoketwords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seodescription != null" >
+        seodescription = #{record.seodescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null" >
+        starttime = #{record.starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endtime != null" >
+        endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.addreass != null" >
+        addreass = #{record.addreass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jiezhitime != null" >
+        jiezhitime = #{record.jiezhitime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.peoplenummax != null" >
+        peoplenummax = #{record.peoplenummax,jdbcType=INTEGER},
+      </if>
+      <if test="record.video != null" >
+        video = #{record.video,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activitytype != null" >
+        activityType = #{record.activitytype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityType != null" >
+        activity_type = #{record.activityType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uId != null" >
+        u_id = #{record.uId,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update activity
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      arear = #{record.arear,jdbcType=VARCHAR},
+      viewflag = #{record.viewflag,jdbcType=INTEGER},
+      sortid = #{record.sortid,jdbcType=INTEGER},
+      source = #{record.source,jdbcType=VARCHAR},
+      uId = #{record.uid,jdbcType=INTEGER},
+      clicknum = #{record.clicknum,jdbcType=INTEGER},
+      image = #{record.image,jdbcType=VARCHAR},
+      seoketwords = #{record.seoketwords,jdbcType=VARCHAR},
+      seodescription = #{record.seodescription,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=VARCHAR},
+      starttime = #{record.starttime,jdbcType=TIMESTAMP},
+      endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      addreass = #{record.addreass,jdbcType=VARCHAR},
+      jiezhitime = #{record.jiezhitime,jdbcType=TIMESTAMP},
+      peoplenummax = #{record.peoplenummax,jdbcType=INTEGER},
+      video = #{record.video,jdbcType=VARCHAR},
+      activityType = #{record.activitytype,jdbcType=VARCHAR},
+      activity_type = #{record.activityType,jdbcType=VARCHAR},
+      u_id = #{record.uId,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update activity
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      arear = #{record.arear,jdbcType=VARCHAR},
+      viewflag = #{record.viewflag,jdbcType=INTEGER},
+      sortid = #{record.sortid,jdbcType=INTEGER},
+      source = #{record.source,jdbcType=VARCHAR},
+      uId = #{record.uid,jdbcType=INTEGER},
+      clicknum = #{record.clicknum,jdbcType=INTEGER},
+      image = #{record.image,jdbcType=VARCHAR},
+      seoketwords = #{record.seoketwords,jdbcType=VARCHAR},
+      seodescription = #{record.seodescription,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=VARCHAR},
+      starttime = #{record.starttime,jdbcType=TIMESTAMP},
+      endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      addreass = #{record.addreass,jdbcType=VARCHAR},
+      jiezhitime = #{record.jiezhitime,jdbcType=TIMESTAMP},
+      peoplenummax = #{record.peoplenummax,jdbcType=INTEGER},
+      video = #{record.video,jdbcType=VARCHAR},
+      activityType = #{record.activitytype,jdbcType=VARCHAR},
+      activity_type = #{record.activityType,jdbcType=VARCHAR},
+      u_id = #{record.uId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqhw.pojo.Activity" >
+    update activity
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="arear != null" >
+        arear = #{arear,jdbcType=VARCHAR},
+      </if>
+      <if test="viewflag != null" >
+        viewflag = #{viewflag,jdbcType=INTEGER},
+      </if>
+      <if test="sortid != null" >
+        sortid = #{sortid,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        uId = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="clicknum != null" >
+        clicknum = #{clicknum,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="seoketwords != null" >
+        seoketwords = #{seoketwords,jdbcType=VARCHAR},
+      </if>
+      <if test="seodescription != null" >
+        seodescription = #{seodescription,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        starttime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addreass != null" >
+        addreass = #{addreass,jdbcType=VARCHAR},
+      </if>
+      <if test="jiezhitime != null" >
+        jiezhitime = #{jiezhitime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="peoplenummax != null" >
+        peoplenummax = #{peoplenummax,jdbcType=INTEGER},
+      </if>
+      <if test="video != null" >
+        video = #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="activitytype != null" >
+        activityType = #{activitytype,jdbcType=VARCHAR},
+      </if>
+      <if test="activityType != null" >
+        activity_type = #{activityType,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null" >
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hqhw.pojo.Activity" >
+    update activity
+    set name = #{name,jdbcType=VARCHAR},
+      arear = #{arear,jdbcType=VARCHAR},
+      viewflag = #{viewflag,jdbcType=INTEGER},
+      sortid = #{sortid,jdbcType=INTEGER},
+      source = #{source,jdbcType=VARCHAR},
+      uId = #{uid,jdbcType=INTEGER},
+      clicknum = #{clicknum,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      seoketwords = #{seoketwords,jdbcType=VARCHAR},
+      seodescription = #{seodescription,jdbcType=VARCHAR},
+      money = #{money,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      addreass = #{addreass,jdbcType=VARCHAR},
+      jiezhitime = #{jiezhitime,jdbcType=TIMESTAMP},
+      peoplenummax = #{peoplenummax,jdbcType=INTEGER},
+      video = #{video,jdbcType=VARCHAR},
+      activityType = #{activitytype,jdbcType=VARCHAR},
+      activity_type = #{activityType,jdbcType=VARCHAR},
+      u_id = #{uId,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqhw.pojo.Activity" >
+    update activity
+    set name = #{name,jdbcType=VARCHAR},
+      arear = #{arear,jdbcType=VARCHAR},
+      viewflag = #{viewflag,jdbcType=INTEGER},
+      sortid = #{sortid,jdbcType=INTEGER},
+      source = #{source,jdbcType=VARCHAR},
+      uId = #{uid,jdbcType=INTEGER},
+      clicknum = #{clicknum,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      seoketwords = #{seoketwords,jdbcType=VARCHAR},
+      seodescription = #{seodescription,jdbcType=VARCHAR},
+      money = #{money,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      addreass = #{addreass,jdbcType=VARCHAR},
+      jiezhitime = #{jiezhitime,jdbcType=TIMESTAMP},
+      peoplenummax = #{peoplenummax,jdbcType=INTEGER},
+      video = #{video,jdbcType=VARCHAR},
+      activityType = #{activitytype,jdbcType=VARCHAR},
+      activity_type = #{activityType,jdbcType=VARCHAR},
+      u_id = #{uId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

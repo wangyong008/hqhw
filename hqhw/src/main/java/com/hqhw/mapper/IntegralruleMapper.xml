@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.mapper.IntegralruleMapper" >
+  <resultMap id="BaseResultMap" type="com.hqhw.pojo.Integralrule" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="register" property="register" jdbcType="INTEGER" />
+    <result column="invite" property="invite" jdbcType="INTEGER" />
+    <result column="contribute" property="contribute" jdbcType="INTEGER" />
+    <result column="identity" property="identity" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, register, invite, contribute, identity, email
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hqhw.pojo.IntegralruleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from integralrule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from integralrule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from integralrule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqhw.pojo.IntegralruleExample" >
+    delete from integralrule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqhw.pojo.Integralrule" >
+    insert into integralrule (id, register, invite, 
+      contribute, identity, email
+      )
+    values (#{id,jdbcType=INTEGER}, #{register,jdbcType=INTEGER}, #{invite,jdbcType=INTEGER}, 
+      #{contribute,jdbcType=INTEGER}, #{identity,jdbcType=INTEGER}, #{email,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqhw.pojo.Integralrule" >
+    insert into integralrule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="register != null" >
+        register,
+      </if>
+      <if test="invite != null" >
+        invite,
+      </if>
+      <if test="contribute != null" >
+        contribute,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="register != null" >
+        #{register,jdbcType=INTEGER},
+      </if>
+      <if test="invite != null" >
+        #{invite,jdbcType=INTEGER},
+      </if>
+      <if test="contribute != null" >
+        #{contribute,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqhw.pojo.IntegralruleExample" resultType="java.lang.Integer" >
+    select count(*) from integralrule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update integralrule
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.register != null" >
+        register = #{record.register,jdbcType=INTEGER},
+      </if>
+      <if test="record.invite != null" >
+        invite = #{record.invite,jdbcType=INTEGER},
+      </if>
+      <if test="record.contribute != null" >
+        contribute = #{record.contribute,jdbcType=INTEGER},
+      </if>
+      <if test="record.identity != null" >
+        identity = #{record.identity,jdbcType=INTEGER},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update integralrule
+    set id = #{record.id,jdbcType=INTEGER},
+      register = #{record.register,jdbcType=INTEGER},
+      invite = #{record.invite,jdbcType=INTEGER},
+      contribute = #{record.contribute,jdbcType=INTEGER},
+      identity = #{record.identity,jdbcType=INTEGER},
+      email = #{record.email,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqhw.pojo.Integralrule" >
+    update integralrule
+    <set >
+      <if test="register != null" >
+        register = #{register,jdbcType=INTEGER},
+      </if>
+      <if test="invite != null" >
+        invite = #{invite,jdbcType=INTEGER},
+      </if>
+      <if test="contribute != null" >
+        contribute = #{contribute,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqhw.pojo.Integralrule" >
+    update integralrule
+    set register = #{register,jdbcType=INTEGER},
+      invite = #{invite,jdbcType=INTEGER},
+      contribute = #{contribute,jdbcType=INTEGER},
+      identity = #{identity,jdbcType=INTEGER},
+      email = #{email,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.mapper.FilesMapper" >
+  <resultMap id="BaseResultMap" type="com.hqhw.pojo.Files" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="newName" property="newname" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="uploadTime" property="uploadtime" jdbcType="TIMESTAMP" />
+    <result column="uId" property="uid" jdbcType="INTEGER" />
+    <result column="nId" property="nid" jdbcType="INTEGER" />
+    <result column="vId" property="vid" jdbcType="INTEGER" />
+    <result column="aId" property="aid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, newName, position, size, path, uploadTime, uId, nId, vId, aId
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hqhw.pojo.FilesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from files
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from files
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from files
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqhw.pojo.FilesExample" >
+    delete from files
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqhw.pojo.Files" >
+    insert into files (id, name, newName, 
+      position, size, path, 
+      uploadTime, uId, nId, 
+      vId, aId)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{newname,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{uploadtime,jdbcType=TIMESTAMP}, #{uid,jdbcType=INTEGER}, #{nid,jdbcType=INTEGER}, 
+      #{vid,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqhw.pojo.Files" >
+    insert into files
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="newname != null" >
+        newName,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="uploadtime != null" >
+        uploadTime,
+      </if>
+      <if test="uid != null" >
+        uId,
+      </if>
+      <if test="nid != null" >
+        nId,
+      </if>
+      <if test="vid != null" >
+        vId,
+      </if>
+      <if test="aid != null" >
+        aId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="newname != null" >
+        #{newname,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="nid != null" >
+        #{nid,jdbcType=INTEGER},
+      </if>
+      <if test="vid != null" >
+        #{vid,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null" >
+        #{aid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqhw.pojo.FilesExample" resultType="java.lang.Integer" >
+    select count(*) from files
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update files
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newname != null" >
+        newName = #{record.newname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.position != null" >
+        position = #{record.position,jdbcType=VARCHAR},
+      </if>
+      <if test="record.size != null" >
+        size = #{record.size,jdbcType=VARCHAR},
+      </if>
+      <if test="record.path != null" >
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadtime != null" >
+        uploadTime = #{record.uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.uid != null" >
+        uId = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.nid != null" >
+        nId = #{record.nid,jdbcType=INTEGER},
+      </if>
+      <if test="record.vid != null" >
+        vId = #{record.vid,jdbcType=INTEGER},
+      </if>
+      <if test="record.aid != null" >
+        aId = #{record.aid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update files
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      newName = #{record.newname,jdbcType=VARCHAR},
+      position = #{record.position,jdbcType=VARCHAR},
+      size = #{record.size,jdbcType=VARCHAR},
+      path = #{record.path,jdbcType=VARCHAR},
+      uploadTime = #{record.uploadtime,jdbcType=TIMESTAMP},
+      uId = #{record.uid,jdbcType=INTEGER},
+      nId = #{record.nid,jdbcType=INTEGER},
+      vId = #{record.vid,jdbcType=INTEGER},
+      aId = #{record.aid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqhw.pojo.Files" >
+    update files
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="newname != null" >
+        newName = #{newname,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        uploadTime = #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uid != null" >
+        uId = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="nid != null" >
+        nId = #{nid,jdbcType=INTEGER},
+      </if>
+      <if test="vid != null" >
+        vId = #{vid,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null" >
+        aId = #{aid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqhw.pojo.Files" >
+    update files
+    set name = #{name,jdbcType=VARCHAR},
+      newName = #{newname,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      uploadTime = #{uploadtime,jdbcType=TIMESTAMP},
+      uId = #{uid,jdbcType=INTEGER},
+      nId = #{nid,jdbcType=INTEGER},
+      vId = #{vid,jdbcType=INTEGER},
+      aId = #{aid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

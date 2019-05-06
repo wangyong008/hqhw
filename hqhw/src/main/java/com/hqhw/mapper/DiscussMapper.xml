@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.mapper.DiscussMapper" >
+  <resultMap id="BaseResultMap" type="com.hqhw.pojo.Discuss" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uId" property="uid" jdbcType="INTEGER" />
+    <result column="outId" property="outid" jdbcType="INTEGER" />
+    <result column="belongnews" property="belongnews" jdbcType="INTEGER" />
+    <result column="vId" property="vid" jdbcType="INTEGER" />
+    <result column="activityId" property="activityid" jdbcType="INTEGER" />
+    <result column="visitorName" property="visitorname" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="visitor_name" property="visitorName" jdbcType="VARCHAR" />
+    <result column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="out_id" property="outId" jdbcType="INTEGER" />
+    <result column="u_id" property="uId" jdbcType="INTEGER" />
+    <result column="v_id" property="vId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, uId, outId, belongnews, vId, activityId, visitorName, content, time, visitor_name, 
+    activity_id, out_id, u_id, v_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hqhw.pojo.DiscussExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from discuss
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from discuss
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from discuss
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqhw.pojo.DiscussExample" >
+    delete from discuss
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqhw.pojo.Discuss" >
+    insert into discuss (id, uId, outId, 
+      belongnews, vId, activityId, 
+      visitorName, content, time, 
+      visitor_name, activity_id, out_id, 
+      u_id, v_id)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{outid,jdbcType=INTEGER}, 
+      #{belongnews,jdbcType=INTEGER}, #{vid,jdbcType=INTEGER}, #{activityid,jdbcType=INTEGER}, 
+      #{visitorname,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{visitorName,jdbcType=VARCHAR}, #{activityId,jdbcType=INTEGER}, #{outId,jdbcType=INTEGER}, 
+      #{uId,jdbcType=INTEGER}, #{vId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqhw.pojo.Discuss" >
+    insert into discuss
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uId,
+      </if>
+      <if test="outid != null" >
+        outId,
+      </if>
+      <if test="belongnews != null" >
+        belongnews,
+      </if>
+      <if test="vid != null" >
+        vId,
+      </if>
+      <if test="activityid != null" >
+        activityId,
+      </if>
+      <if test="visitorname != null" >
+        visitorName,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="visitorName != null" >
+        visitor_name,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="outId != null" >
+        out_id,
+      </if>
+      <if test="uId != null" >
+        u_id,
+      </if>
+      <if test="vId != null" >
+        v_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="outid != null" >
+        #{outid,jdbcType=INTEGER},
+      </if>
+      <if test="belongnews != null" >
+        #{belongnews,jdbcType=INTEGER},
+      </if>
+      <if test="vid != null" >
+        #{vid,jdbcType=INTEGER},
+      </if>
+      <if test="activityid != null" >
+        #{activityid,jdbcType=INTEGER},
+      </if>
+      <if test="visitorname != null" >
+        #{visitorname,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitorName != null" >
+        #{visitorName,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="outId != null" >
+        #{outId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="vId != null" >
+        #{vId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqhw.pojo.DiscussExample" resultType="java.lang.Integer" >
+    select count(*) from discuss
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update discuss
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uid != null" >
+        uId = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.outid != null" >
+        outId = #{record.outid,jdbcType=INTEGER},
+      </if>
+      <if test="record.belongnews != null" >
+        belongnews = #{record.belongnews,jdbcType=INTEGER},
+      </if>
+      <if test="record.vid != null" >
+        vId = #{record.vid,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityid != null" >
+        activityId = #{record.activityid,jdbcType=INTEGER},
+      </if>
+      <if test="record.visitorname != null" >
+        visitorName = #{record.visitorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.visitorName != null" >
+        visitor_name = #{record.visitorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityId != null" >
+        activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.outId != null" >
+        out_id = #{record.outId,jdbcType=INTEGER},
+      </if>
+      <if test="record.uId != null" >
+        u_id = #{record.uId,jdbcType=INTEGER},
+      </if>
+      <if test="record.vId != null" >
+        v_id = #{record.vId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update discuss
+    set id = #{record.id,jdbcType=INTEGER},
+      uId = #{record.uid,jdbcType=INTEGER},
+      outId = #{record.outid,jdbcType=INTEGER},
+      belongnews = #{record.belongnews,jdbcType=INTEGER},
+      vId = #{record.vid,jdbcType=INTEGER},
+      activityId = #{record.activityid,jdbcType=INTEGER},
+      visitorName = #{record.visitorname,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      visitor_name = #{record.visitorName,jdbcType=VARCHAR},
+      activity_id = #{record.activityId,jdbcType=INTEGER},
+      out_id = #{record.outId,jdbcType=INTEGER},
+      u_id = #{record.uId,jdbcType=INTEGER},
+      v_id = #{record.vId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqhw.pojo.Discuss" >
+    update discuss
+    <set >
+      <if test="uid != null" >
+        uId = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="outid != null" >
+        outId = #{outid,jdbcType=INTEGER},
+      </if>
+      <if test="belongnews != null" >
+        belongnews = #{belongnews,jdbcType=INTEGER},
+      </if>
+      <if test="vid != null" >
+        vId = #{vid,jdbcType=INTEGER},
+      </if>
+      <if test="activityid != null" >
+        activityId = #{activityid,jdbcType=INTEGER},
+      </if>
+      <if test="visitorname != null" >
+        visitorName = #{visitorname,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitorName != null" >
+        visitor_name = #{visitorName,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="outId != null" >
+        out_id = #{outId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null" >
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="vId != null" >
+        v_id = #{vId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqhw.pojo.Discuss" >
+    update discuss
+    set uId = #{uid,jdbcType=INTEGER},
+      outId = #{outid,jdbcType=INTEGER},
+      belongnews = #{belongnews,jdbcType=INTEGER},
+      vId = #{vid,jdbcType=INTEGER},
+      activityId = #{activityid,jdbcType=INTEGER},
+      visitorName = #{visitorname,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      visitor_name = #{visitorName,jdbcType=VARCHAR},
+      activity_id = #{activityId,jdbcType=INTEGER},
+      out_id = #{outId,jdbcType=INTEGER},
+      u_id = #{uId,jdbcType=INTEGER},
+      v_id = #{vId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

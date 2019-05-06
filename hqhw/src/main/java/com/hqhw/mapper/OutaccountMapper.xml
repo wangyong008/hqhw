@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.mapper.OutaccountMapper" >
+  <resultMap id="BaseResultMap" type="com.hqhw.pojo.Outaccount" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="nikeName" property="nikename" jdbcType="VARCHAR" />
+    <result column="odescribe" property="odescribe" jdbcType="VARCHAR" />
+    <result column="headPicture" property="headpicture" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="banReason" property="banreason" jdbcType="VARCHAR" />
+    <result column="nPassReason" property="npassreason" jdbcType="VARCHAR" />
+    <result column="ban_reason" property="banReason" jdbcType="VARCHAR" />
+    <result column="head_picture" property="headPicture" jdbcType="VARCHAR" />
+    <result column="n_pass_reason" property="nPassReason" jdbcType="VARCHAR" />
+    <result column="nike_name" property="nikeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, type, nikeName, odescribe, headPicture, state, banReason, nPassReason, ban_reason, 
+    head_picture, n_pass_reason, nike_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hqhw.pojo.OutaccountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from outaccount
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from outaccount
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from outaccount
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqhw.pojo.OutaccountExample" >
+    delete from outaccount
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqhw.pojo.Outaccount" >
+    insert into outaccount (id, type, nikeName, 
+      odescribe, headPicture, state, 
+      banReason, nPassReason, ban_reason, 
+      head_picture, n_pass_reason, nike_name
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{nikename,jdbcType=VARCHAR}, 
+      #{odescribe,jdbcType=VARCHAR}, #{headpicture,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{banreason,jdbcType=VARCHAR}, #{npassreason,jdbcType=VARCHAR}, #{banReason,jdbcType=VARCHAR}, 
+      #{headPicture,jdbcType=VARCHAR}, #{nPassReason,jdbcType=VARCHAR}, #{nikeName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqhw.pojo.Outaccount" >
+    insert into outaccount
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="nikename != null" >
+        nikeName,
+      </if>
+      <if test="odescribe != null" >
+        odescribe,
+      </if>
+      <if test="headpicture != null" >
+        headPicture,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="banreason != null" >
+        banReason,
+      </if>
+      <if test="npassreason != null" >
+        nPassReason,
+      </if>
+      <if test="banReason != null" >
+        ban_reason,
+      </if>
+      <if test="headPicture != null" >
+        head_picture,
+      </if>
+      <if test="nPassReason != null" >
+        n_pass_reason,
+      </if>
+      <if test="nikeName != null" >
+        nike_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="nikename != null" >
+        #{nikename,jdbcType=VARCHAR},
+      </if>
+      <if test="odescribe != null" >
+        #{odescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="headpicture != null" >
+        #{headpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="banreason != null" >
+        #{banreason,jdbcType=VARCHAR},
+      </if>
+      <if test="npassreason != null" >
+        #{npassreason,jdbcType=VARCHAR},
+      </if>
+      <if test="banReason != null" >
+        #{banReason,jdbcType=VARCHAR},
+      </if>
+      <if test="headPicture != null" >
+        #{headPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="nPassReason != null" >
+        #{nPassReason,jdbcType=VARCHAR},
+      </if>
+      <if test="nikeName != null" >
+        #{nikeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqhw.pojo.OutaccountExample" resultType="java.lang.Integer" >
+    select count(*) from outaccount
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update outaccount
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.nikename != null" >
+        nikeName = #{record.nikename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.odescribe != null" >
+        odescribe = #{record.odescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.headpicture != null" >
+        headPicture = #{record.headpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.banreason != null" >
+        banReason = #{record.banreason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.npassreason != null" >
+        nPassReason = #{record.npassreason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.banReason != null" >
+        ban_reason = #{record.banReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.headPicture != null" >
+        head_picture = #{record.headPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nPassReason != null" >
+        n_pass_reason = #{record.nPassReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nikeName != null" >
+        nike_name = #{record.nikeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update outaccount
+    set id = #{record.id,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
+      nikeName = #{record.nikename,jdbcType=VARCHAR},
+      odescribe = #{record.odescribe,jdbcType=VARCHAR},
+      headPicture = #{record.headpicture,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=VARCHAR},
+      banReason = #{record.banreason,jdbcType=VARCHAR},
+      nPassReason = #{record.npassreason,jdbcType=VARCHAR},
+      ban_reason = #{record.banReason,jdbcType=VARCHAR},
+      head_picture = #{record.headPicture,jdbcType=VARCHAR},
+      n_pass_reason = #{record.nPassReason,jdbcType=VARCHAR},
+      nike_name = #{record.nikeName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqhw.pojo.Outaccount" >
+    update outaccount
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="nikename != null" >
+        nikeName = #{nikename,jdbcType=VARCHAR},
+      </if>
+      <if test="odescribe != null" >
+        odescribe = #{odescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="headpicture != null" >
+        headPicture = #{headpicture,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="banreason != null" >
+        banReason = #{banreason,jdbcType=VARCHAR},
+      </if>
+      <if test="npassreason != null" >
+        nPassReason = #{npassreason,jdbcType=VARCHAR},
+      </if>
+      <if test="banReason != null" >
+        ban_reason = #{banReason,jdbcType=VARCHAR},
+      </if>
+      <if test="headPicture != null" >
+        head_picture = #{headPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="nPassReason != null" >
+        n_pass_reason = #{nPassReason,jdbcType=VARCHAR},
+      </if>
+      <if test="nikeName != null" >
+        nike_name = #{nikeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqhw.pojo.Outaccount" >
+    update outaccount
+    set type = #{type,jdbcType=INTEGER},
+      nikeName = #{nikename,jdbcType=VARCHAR},
+      odescribe = #{odescribe,jdbcType=VARCHAR},
+      headPicture = #{headpicture,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      banReason = #{banreason,jdbcType=VARCHAR},
+      nPassReason = #{npassreason,jdbcType=VARCHAR},
+      ban_reason = #{banReason,jdbcType=VARCHAR},
+      head_picture = #{headPicture,jdbcType=VARCHAR},
+      n_pass_reason = #{nPassReason,jdbcType=VARCHAR},
+      nike_name = #{nikeName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

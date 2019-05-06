@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.mapper.VideosortMapper" >
+  <resultMap id="BaseResultMap" type="com.hqhw.pojo.Videosort" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="videoSortName" property="videosortname" jdbcType="VARCHAR" />
+    <result column="vedioNumber" property="vedionumber" jdbcType="INTEGER" />
+    <result column="vedioPosition" property="vedioposition" jdbcType="INTEGER" />
+    <result column="columns" property="columns" jdbcType="VARCHAR" />
+    <result column="Column_5" property="column5" jdbcType="CHAR" />
+    <result column="vedio_number" property="vedioNumber" jdbcType="INTEGER" />
+    <result column="vedio_position" property="vedioPosition" jdbcType="INTEGER" />
+    <result column="video_sort_name" property="videoSortName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, videoSortName, vedioNumber, vedioPosition, columns, Column_5, vedio_number, vedio_position, 
+    video_sort_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hqhw.pojo.VideosortExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from videosort
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from videosort
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from videosort
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqhw.pojo.VideosortExample" >
+    delete from videosort
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqhw.pojo.Videosort" >
+    insert into videosort (id, videoSortName, vedioNumber, 
+      vedioPosition, columns, Column_5, 
+      vedio_number, vedio_position, video_sort_name
+      )
+    values (#{id,jdbcType=INTEGER}, #{videosortname,jdbcType=VARCHAR}, #{vedionumber,jdbcType=INTEGER}, 
+      #{vedioposition,jdbcType=INTEGER}, #{columns,jdbcType=VARCHAR}, #{column5,jdbcType=CHAR}, 
+      #{vedioNumber,jdbcType=INTEGER}, #{vedioPosition,jdbcType=INTEGER}, #{videoSortName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqhw.pojo.Videosort" >
+    insert into videosort
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="videosortname != null" >
+        videoSortName,
+      </if>
+      <if test="vedionumber != null" >
+        vedioNumber,
+      </if>
+      <if test="vedioposition != null" >
+        vedioPosition,
+      </if>
+      <if test="columns != null" >
+        columns,
+      </if>
+      <if test="column5 != null" >
+        Column_5,
+      </if>
+      <if test="vedioNumber != null" >
+        vedio_number,
+      </if>
+      <if test="vedioPosition != null" >
+        vedio_position,
+      </if>
+      <if test="videoSortName != null" >
+        video_sort_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="videosortname != null" >
+        #{videosortname,jdbcType=VARCHAR},
+      </if>
+      <if test="vedionumber != null" >
+        #{vedionumber,jdbcType=INTEGER},
+      </if>
+      <if test="vedioposition != null" >
+        #{vedioposition,jdbcType=INTEGER},
+      </if>
+      <if test="columns != null" >
+        #{columns,jdbcType=VARCHAR},
+      </if>
+      <if test="column5 != null" >
+        #{column5,jdbcType=CHAR},
+      </if>
+      <if test="vedioNumber != null" >
+        #{vedioNumber,jdbcType=INTEGER},
+      </if>
+      <if test="vedioPosition != null" >
+        #{vedioPosition,jdbcType=INTEGER},
+      </if>
+      <if test="videoSortName != null" >
+        #{videoSortName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqhw.pojo.VideosortExample" resultType="java.lang.Integer" >
+    select count(*) from videosort
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update videosort
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.videosortname != null" >
+        videoSortName = #{record.videosortname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vedionumber != null" >
+        vedioNumber = #{record.vedionumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.vedioposition != null" >
+        vedioPosition = #{record.vedioposition,jdbcType=INTEGER},
+      </if>
+      <if test="record.columns != null" >
+        columns = #{record.columns,jdbcType=VARCHAR},
+      </if>
+      <if test="record.column5 != null" >
+        Column_5 = #{record.column5,jdbcType=CHAR},
+      </if>
+      <if test="record.vedioNumber != null" >
+        vedio_number = #{record.vedioNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.vedioPosition != null" >
+        vedio_position = #{record.vedioPosition,jdbcType=INTEGER},
+      </if>
+      <if test="record.videoSortName != null" >
+        video_sort_name = #{record.videoSortName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update videosort
+    set id = #{record.id,jdbcType=INTEGER},
+      videoSortName = #{record.videosortname,jdbcType=VARCHAR},
+      vedioNumber = #{record.vedionumber,jdbcType=INTEGER},
+      vedioPosition = #{record.vedioposition,jdbcType=INTEGER},
+      columns = #{record.columns,jdbcType=VARCHAR},
+      Column_5 = #{record.column5,jdbcType=CHAR},
+      vedio_number = #{record.vedioNumber,jdbcType=INTEGER},
+      vedio_position = #{record.vedioPosition,jdbcType=INTEGER},
+      video_sort_name = #{record.videoSortName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqhw.pojo.Videosort" >
+    update videosort
+    <set >
+      <if test="videosortname != null" >
+        videoSortName = #{videosortname,jdbcType=VARCHAR},
+      </if>
+      <if test="vedionumber != null" >
+        vedioNumber = #{vedionumber,jdbcType=INTEGER},
+      </if>
+      <if test="vedioposition != null" >
+        vedioPosition = #{vedioposition,jdbcType=INTEGER},
+      </if>
+      <if test="columns != null" >
+        columns = #{columns,jdbcType=VARCHAR},
+      </if>
+      <if test="column5 != null" >
+        Column_5 = #{column5,jdbcType=CHAR},
+      </if>
+      <if test="vedioNumber != null" >
+        vedio_number = #{vedioNumber,jdbcType=INTEGER},
+      </if>
+      <if test="vedioPosition != null" >
+        vedio_position = #{vedioPosition,jdbcType=INTEGER},
+      </if>
+      <if test="videoSortName != null" >
+        video_sort_name = #{videoSortName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqhw.pojo.Videosort" >
+    update videosort
+    set videoSortName = #{videosortname,jdbcType=VARCHAR},
+      vedioNumber = #{vedionumber,jdbcType=INTEGER},
+      vedioPosition = #{vedioposition,jdbcType=INTEGER},
+      columns = #{columns,jdbcType=VARCHAR},
+      Column_5 = #{column5,jdbcType=CHAR},
+      vedio_number = #{vedioNumber,jdbcType=INTEGER},
+      vedio_position = #{vedioPosition,jdbcType=INTEGER},
+      video_sort_name = #{videoSortName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

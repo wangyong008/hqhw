@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.mapper.UsersMapper" >
+  <resultMap id="BaseResultMap" type="com.hqhw.pojo.Users" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="accountId" property="accountid" jdbcType="VARCHAR" />
+    <result column="balance" property="balance" jdbcType="DOUBLE" />
+    <result column="IDcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="headimage" property="headimage" jdbcType="VARCHAR" />
+    <result column="password_salt" property="passwordSalt" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, phone, password, name, account, email, accountId, balance, IDcard, realname, 
+    headimage, password_salt
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hqhw.pojo.UsersExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from users
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hqhw.pojo.UsersExample" >
+    delete from users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hqhw.pojo.Users" >
+    insert into users (id, phone, password, 
+      name, account, email, 
+      accountId, balance, IDcard, 
+      realname, headimage, password_salt
+      )
+    values (#{id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{accountid,jdbcType=VARCHAR}, #{balance,jdbcType=DOUBLE}, #{idcard,jdbcType=VARCHAR}, 
+      #{realname,jdbcType=VARCHAR}, #{headimage,jdbcType=VARCHAR}, #{passwordSalt,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hqhw.pojo.Users" >
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="accountid != null" >
+        accountId,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="idcard != null" >
+        IDcard,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="headimage != null" >
+        headimage,
+      </if>
+      <if test="passwordSalt != null" >
+        password_salt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="accountid != null" >
+        #{accountid,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="headimage != null" >
+        #{headimage,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordSalt != null" >
+        #{passwordSalt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hqhw.pojo.UsersExample" resultType="java.lang.Integer" >
+    select count(*) from users
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update users
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account != null" >
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountid != null" >
+        accountId = #{record.accountid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.balance != null" >
+        balance = #{record.balance,jdbcType=DOUBLE},
+      </if>
+      <if test="record.idcard != null" >
+        IDcard = #{record.idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realname != null" >
+        realname = #{record.realname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.headimage != null" >
+        headimage = #{record.headimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passwordSalt != null" >
+        password_salt = #{record.passwordSalt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update users
+    set id = #{record.id,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      account = #{record.account,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      accountId = #{record.accountid,jdbcType=VARCHAR},
+      balance = #{record.balance,jdbcType=DOUBLE},
+      IDcard = #{record.idcard,jdbcType=VARCHAR},
+      realname = #{record.realname,jdbcType=VARCHAR},
+      headimage = #{record.headimage,jdbcType=VARCHAR},
+      password_salt = #{record.passwordSalt,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hqhw.pojo.Users" >
+    update users
+    <set >
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="accountid != null" >
+        accountId = #{accountid,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="idcard != null" >
+        IDcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="headimage != null" >
+        headimage = #{headimage,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordSalt != null" >
+        password_salt = #{passwordSalt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hqhw.pojo.Users" >
+    update users
+    set phone = #{phone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      accountId = #{accountid,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=DOUBLE},
+      IDcard = #{idcard,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      headimage = #{headimage,jdbcType=VARCHAR},
+      password_salt = #{passwordSalt,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findPhone" parameterType="String" resultType="String">
+  		select 1 from users where phone = #{phone}
+  </select>
+  
+  <select id="findName" parameterType="String" resultType="String">
+  		select 1 from users where name = #{name}
+  </select>
+  
+  <insert id="saveNPP" parameterType="com.hqhw.pojo.Users">
+  		insert into users(name, phone, password_sald, password) values (#{name}, #{phone}, #{passwordSalt}, #{password})
+  </insert>
+  
+  <select id="findEmail" parameterType="String" resultType="String">
+  		select 1 from users where email = #{email}
+  </select>
+  
+  <insert id="saveNEP" parameterType="com.hqhw.pojo.Users">
+  		insert into users(name, email, password_sald, password) values (#{name}, #{email}, #{passwordSalt}, #{password})
+  </insert>
+  
+  <select id="findPasswordSalt" parameterType="String" resultType="String">
+  		select password_salt from users where name = #{name}
+  </select>
+  
+  <select id="findNaPaByPh" parameterType="String" resultType="com.hqhw.pojo.Users">
+  		select name, password from users where phone = #{phone}
+  </select>
+  
+  <select id="findNaPaByEa" parameterType="String" resultType="com.hqhw.pojo.Users">
+  		select name, password from users where email = #{email}
+  </select>
+</mapper>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.dao.AdvertisementFilesMapper" >
+	<select id="findPAL" parameterType="String" resultType="com.hqhw.bean.AdvertisementFiles">
+		select f.path, a.addre, a.link from Advertisement a INNER JOIN files f ON f.aId = (select id from Advertisement where addre = #{addre}) and a.addre = #{addre}
+	</select>
+</mapper>
