@@ -18,19 +18,7 @@
     <result column="vedioGood" property="vediogood" jdbcType="INTEGER" />
     <result column="vedioBad" property="vediobad" jdbcType="INTEGER" />
     <result column="vedioKeep" property="vediokeep" jdbcType="INTEGER" />
-    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
-    <result column="n_pass_reson" property="nPassReson" jdbcType="VARCHAR" />
-    <result column="picture_address" property="pictureAddress" jdbcType="VARCHAR" />
-    <result column="vedio_bad" property="vedioBad" jdbcType="INTEGER" />
-    <result column="vedio_good" property="vedioGood" jdbcType="INTEGER" />
-    <result column="vedio_keep" property="vedioKeep" jdbcType="INTEGER" />
-    <result column="vedio_number" property="vedioNumber" jdbcType="INTEGER" />
-    <result column="video_address" property="videoAddress" jdbcType="VARCHAR" />
-    <result column="video_description" property="videoDescription" jdbcType="VARCHAR" />
-    <result column="video_key_word" property="videoKeyWord" jdbcType="VARCHAR" />
-    <result column="view_flag" property="viewFlag" jdbcType="INTEGER" />
-    <result column="belong_account" property="belongAccount" jdbcType="INTEGER" />
-    <result column="belong_sort" property="belongSort" jdbcType="INTEGER" />
+    <result column="addrflage" property="addrflage" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -93,9 +81,7 @@
   <sql id="Base_Column_List" >
     id, pictureAddress, videoAddress, belongSort, title, videoKeyWord, videoDescription, 
     addTime, viewFlag, belongAccount, nPassReson, source, vedioNumber, vedioGood, vedioBad, 
-    vedioKeep, add_time, n_pass_reson, picture_address, vedio_bad, vedio_good, vedio_keep, 
-    vedio_number, video_address, video_description, video_key_word, view_flag, belong_account, 
-    belong_sort
+    vedioKeep, addrflage
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hqhw.pojo.VideomanagerExample" >
     select
@@ -133,21 +119,13 @@
       videoDescription, addTime, viewFlag, 
       belongAccount, nPassReson, source, 
       vedioNumber, vedioGood, vedioBad, 
-      vedioKeep, add_time, n_pass_reson, 
-      picture_address, vedio_bad, vedio_good, 
-      vedio_keep, vedio_number, video_address, 
-      video_description, video_key_word, view_flag, 
-      belong_account, belong_sort)
+      vedioKeep, addrflage)
     values (#{id,jdbcType=INTEGER}, #{pictureaddress,jdbcType=VARCHAR}, #{videoaddress,jdbcType=VARCHAR}, 
       #{belongsort,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{videokeyword,jdbcType=VARCHAR}, 
       #{videodescription,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP}, #{viewflag,jdbcType=INTEGER}, 
       #{belongaccount,jdbcType=INTEGER}, #{npassreson,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
       #{vedionumber,jdbcType=INTEGER}, #{vediogood,jdbcType=INTEGER}, #{vediobad,jdbcType=INTEGER}, 
-      #{vediokeep,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, #{nPassReson,jdbcType=VARCHAR}, 
-      #{pictureAddress,jdbcType=VARCHAR}, #{vedioBad,jdbcType=INTEGER}, #{vedioGood,jdbcType=INTEGER}, 
-      #{vedioKeep,jdbcType=INTEGER}, #{vedioNumber,jdbcType=INTEGER}, #{videoAddress,jdbcType=VARCHAR}, 
-      #{videoDescription,jdbcType=VARCHAR}, #{videoKeyWord,jdbcType=VARCHAR}, #{viewFlag,jdbcType=INTEGER}, 
-      #{belongAccount,jdbcType=INTEGER}, #{belongSort,jdbcType=INTEGER})
+      #{vediokeep,jdbcType=INTEGER}, #{addrflage,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.hqhw.pojo.Videomanager" >
     insert into videomanager
@@ -200,44 +178,8 @@
       <if test="vediokeep != null" >
         vedioKeep,
       </if>
-      <if test="addTime != null" >
-        add_time,
-      </if>
-      <if test="nPassReson != null" >
-        n_pass_reson,
-      </if>
-      <if test="pictureAddress != null" >
-        picture_address,
-      </if>
-      <if test="vedioBad != null" >
-        vedio_bad,
-      </if>
-      <if test="vedioGood != null" >
-        vedio_good,
-      </if>
-      <if test="vedioKeep != null" >
-        vedio_keep,
-      </if>
-      <if test="vedioNumber != null" >
-        vedio_number,
-      </if>
-      <if test="videoAddress != null" >
-        video_address,
-      </if>
-      <if test="videoDescription != null" >
-        video_description,
-      </if>
-      <if test="videoKeyWord != null" >
-        video_key_word,
-      </if>
-      <if test="viewFlag != null" >
-        view_flag,
-      </if>
-      <if test="belongAccount != null" >
-        belong_account,
-      </if>
-      <if test="belongSort != null" >
-        belong_sort,
+      <if test="addrflage != null" >
+        addrflage,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -289,44 +231,8 @@
       <if test="vediokeep != null" >
         #{vediokeep,jdbcType=INTEGER},
       </if>
-      <if test="addTime != null" >
-        #{addTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nPassReson != null" >
-        #{nPassReson,jdbcType=VARCHAR},
-      </if>
-      <if test="pictureAddress != null" >
-        #{pictureAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="vedioBad != null" >
-        #{vedioBad,jdbcType=INTEGER},
-      </if>
-      <if test="vedioGood != null" >
-        #{vedioGood,jdbcType=INTEGER},
-      </if>
-      <if test="vedioKeep != null" >
-        #{vedioKeep,jdbcType=INTEGER},
-      </if>
-      <if test="vedioNumber != null" >
-        #{vedioNumber,jdbcType=INTEGER},
-      </if>
-      <if test="videoAddress != null" >
-        #{videoAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="videoDescription != null" >
-        #{videoDescription,jdbcType=VARCHAR},
-      </if>
-      <if test="videoKeyWord != null" >
-        #{videoKeyWord,jdbcType=VARCHAR},
-      </if>
-      <if test="viewFlag != null" >
-        #{viewFlag,jdbcType=INTEGER},
-      </if>
-      <if test="belongAccount != null" >
-        #{belongAccount,jdbcType=INTEGER},
-      </if>
-      <if test="belongSort != null" >
-        #{belongSort,jdbcType=INTEGER},
+      <if test="addrflage != null" >
+        #{addrflage,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -387,44 +293,8 @@
       <if test="record.vediokeep != null" >
         vedioKeep = #{record.vediokeep,jdbcType=INTEGER},
       </if>
-      <if test="record.addTime != null" >
-        add_time = #{record.addTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.nPassReson != null" >
-        n_pass_reson = #{record.nPassReson,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pictureAddress != null" >
-        picture_address = #{record.pictureAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="record.vedioBad != null" >
-        vedio_bad = #{record.vedioBad,jdbcType=INTEGER},
-      </if>
-      <if test="record.vedioGood != null" >
-        vedio_good = #{record.vedioGood,jdbcType=INTEGER},
-      </if>
-      <if test="record.vedioKeep != null" >
-        vedio_keep = #{record.vedioKeep,jdbcType=INTEGER},
-      </if>
-      <if test="record.vedioNumber != null" >
-        vedio_number = #{record.vedioNumber,jdbcType=INTEGER},
-      </if>
-      <if test="record.videoAddress != null" >
-        video_address = #{record.videoAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="record.videoDescription != null" >
-        video_description = #{record.videoDescription,jdbcType=VARCHAR},
-      </if>
-      <if test="record.videoKeyWord != null" >
-        video_key_word = #{record.videoKeyWord,jdbcType=VARCHAR},
-      </if>
-      <if test="record.viewFlag != null" >
-        view_flag = #{record.viewFlag,jdbcType=INTEGER},
-      </if>
-      <if test="record.belongAccount != null" >
-        belong_account = #{record.belongAccount,jdbcType=INTEGER},
-      </if>
-      <if test="record.belongSort != null" >
-        belong_sort = #{record.belongSort,jdbcType=INTEGER},
+      <if test="record.addrflage != null" >
+        addrflage = #{record.addrflage,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -449,19 +319,7 @@
       vedioGood = #{record.vediogood,jdbcType=INTEGER},
       vedioBad = #{record.vediobad,jdbcType=INTEGER},
       vedioKeep = #{record.vediokeep,jdbcType=INTEGER},
-      add_time = #{record.addTime,jdbcType=TIMESTAMP},
-      n_pass_reson = #{record.nPassReson,jdbcType=VARCHAR},
-      picture_address = #{record.pictureAddress,jdbcType=VARCHAR},
-      vedio_bad = #{record.vedioBad,jdbcType=INTEGER},
-      vedio_good = #{record.vedioGood,jdbcType=INTEGER},
-      vedio_keep = #{record.vedioKeep,jdbcType=INTEGER},
-      vedio_number = #{record.vedioNumber,jdbcType=INTEGER},
-      video_address = #{record.videoAddress,jdbcType=VARCHAR},
-      video_description = #{record.videoDescription,jdbcType=VARCHAR},
-      video_key_word = #{record.videoKeyWord,jdbcType=VARCHAR},
-      view_flag = #{record.viewFlag,jdbcType=INTEGER},
-      belong_account = #{record.belongAccount,jdbcType=INTEGER},
-      belong_sort = #{record.belongSort,jdbcType=INTEGER}
+      addrflage = #{record.addrflage,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -514,44 +372,8 @@
       <if test="vediokeep != null" >
         vedioKeep = #{vediokeep,jdbcType=INTEGER},
       </if>
-      <if test="addTime != null" >
-        add_time = #{addTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nPassReson != null" >
-        n_pass_reson = #{nPassReson,jdbcType=VARCHAR},
-      </if>
-      <if test="pictureAddress != null" >
-        picture_address = #{pictureAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="vedioBad != null" >
-        vedio_bad = #{vedioBad,jdbcType=INTEGER},
-      </if>
-      <if test="vedioGood != null" >
-        vedio_good = #{vedioGood,jdbcType=INTEGER},
-      </if>
-      <if test="vedioKeep != null" >
-        vedio_keep = #{vedioKeep,jdbcType=INTEGER},
-      </if>
-      <if test="vedioNumber != null" >
-        vedio_number = #{vedioNumber,jdbcType=INTEGER},
-      </if>
-      <if test="videoAddress != null" >
-        video_address = #{videoAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="videoDescription != null" >
-        video_description = #{videoDescription,jdbcType=VARCHAR},
-      </if>
-      <if test="videoKeyWord != null" >
-        video_key_word = #{videoKeyWord,jdbcType=VARCHAR},
-      </if>
-      <if test="viewFlag != null" >
-        view_flag = #{viewFlag,jdbcType=INTEGER},
-      </if>
-      <if test="belongAccount != null" >
-        belong_account = #{belongAccount,jdbcType=INTEGER},
-      </if>
-      <if test="belongSort != null" >
-        belong_sort = #{belongSort,jdbcType=INTEGER},
+      <if test="addrflage != null" >
+        addrflage = #{addrflage,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -573,19 +395,7 @@
       vedioGood = #{vediogood,jdbcType=INTEGER},
       vedioBad = #{vediobad,jdbcType=INTEGER},
       vedioKeep = #{vediokeep,jdbcType=INTEGER},
-      add_time = #{addTime,jdbcType=TIMESTAMP},
-      n_pass_reson = #{nPassReson,jdbcType=VARCHAR},
-      picture_address = #{pictureAddress,jdbcType=VARCHAR},
-      vedio_bad = #{vedioBad,jdbcType=INTEGER},
-      vedio_good = #{vedioGood,jdbcType=INTEGER},
-      vedio_keep = #{vedioKeep,jdbcType=INTEGER},
-      vedio_number = #{vedioNumber,jdbcType=INTEGER},
-      video_address = #{videoAddress,jdbcType=VARCHAR},
-      video_description = #{videoDescription,jdbcType=VARCHAR},
-      video_key_word = #{videoKeyWord,jdbcType=VARCHAR},
-      view_flag = #{viewFlag,jdbcType=INTEGER},
-      belong_account = #{belongAccount,jdbcType=INTEGER},
-      belong_sort = #{belongSort,jdbcType=INTEGER}
+      addrflage = #{addrflage,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

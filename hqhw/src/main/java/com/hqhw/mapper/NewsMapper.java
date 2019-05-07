@@ -9,13 +9,13 @@ import org.apache.ibatis.annotations.Param;
 
 public interface NewsMapper {
 	
+//	查询头条文章
+	News findTopNews();
+	
 //	  根据文章分类查找最新的n篇文章  
 	List<News> findBySort(String name);
 	
-	/**
-	 * 根据关键字和标题对文章模糊查询
-	 * 注意，传入的时候先把百分号加上
-	 */
+//	 根据关键字和标题对文章模糊查询注意，传入的时候先把百分号加上
 	List<News> findBySeTi(News n);
 	
     int countByExample(NewsExample example);

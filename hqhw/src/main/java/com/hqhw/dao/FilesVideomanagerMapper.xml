@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.dao.FilesVideomanagerMapper" >
+	<select id="findTopVideo" resultType="com.hqhw.bean.FilesVideomanager">
+	  		select v.id, f.path, v.title from files f join videoManager v on v.addrflage = 1 and f.vId = v.id LIMIT 1
+	  </select>
+</mapper>

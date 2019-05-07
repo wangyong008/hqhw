@@ -364,62 +364,52 @@ public class NewsExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddrflageEqualTo(String value) {
+        public Criteria andAddrflageEqualTo(Integer value) {
             addCriterion("addrflage =", value, "addrflage");
             return (Criteria) this;
         }
 
-        public Criteria andAddrflageNotEqualTo(String value) {
+        public Criteria andAddrflageNotEqualTo(Integer value) {
             addCriterion("addrflage <>", value, "addrflage");
             return (Criteria) this;
         }
 
-        public Criteria andAddrflageGreaterThan(String value) {
+        public Criteria andAddrflageGreaterThan(Integer value) {
             addCriterion("addrflage >", value, "addrflage");
             return (Criteria) this;
         }
 
-        public Criteria andAddrflageGreaterThanOrEqualTo(String value) {
+        public Criteria andAddrflageGreaterThanOrEqualTo(Integer value) {
             addCriterion("addrflage >=", value, "addrflage");
             return (Criteria) this;
         }
 
-        public Criteria andAddrflageLessThan(String value) {
+        public Criteria andAddrflageLessThan(Integer value) {
             addCriterion("addrflage <", value, "addrflage");
             return (Criteria) this;
         }
 
-        public Criteria andAddrflageLessThanOrEqualTo(String value) {
+        public Criteria andAddrflageLessThanOrEqualTo(Integer value) {
             addCriterion("addrflage <=", value, "addrflage");
             return (Criteria) this;
         }
 
-        public Criteria andAddrflageLike(String value) {
-            addCriterion("addrflage like", value, "addrflage");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddrflageNotLike(String value) {
-            addCriterion("addrflage not like", value, "addrflage");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddrflageIn(List<String> values) {
+        public Criteria andAddrflageIn(List<Integer> values) {
             addCriterion("addrflage in", values, "addrflage");
             return (Criteria) this;
         }
 
-        public Criteria andAddrflageNotIn(List<String> values) {
+        public Criteria andAddrflageNotIn(List<Integer> values) {
             addCriterion("addrflage not in", values, "addrflage");
             return (Criteria) this;
         }
 
-        public Criteria andAddrflageBetween(String value1, String value2) {
+        public Criteria andAddrflageBetween(Integer value1, Integer value2) {
             addCriterion("addrflage between", value1, value2, "addrflage");
             return (Criteria) this;
         }
 
-        public Criteria andAddrflageNotBetween(String value1, String value2) {
+        public Criteria andAddrflageNotBetween(Integer value1, Integer value2) {
             addCriterion("addrflage not between", value1, value2, "addrflage");
             return (Criteria) this;
         }

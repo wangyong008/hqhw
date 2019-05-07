@@ -6,7 +6,7 @@
     <result column="diqu" property="diqu" jdbcType="VARCHAR" />
     <result column="viewFlag" property="viewflag" jdbcType="INTEGER" />
     <result column="sortId" property="sortid" jdbcType="INTEGER" />
-    <result column="addrflage" property="addrflage" jdbcType="VARCHAR" />
+    <result column="addrflage" property="addrflage" jdbcType="INTEGER" />
     <result column="source" property="source" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="author" property="author" jdbcType="VARCHAR" />
@@ -161,7 +161,7 @@
       view_flag, sort_id, out_id, 
       content)
     values (#{id,jdbcType=INTEGER}, #{diqu,jdbcType=VARCHAR}, #{viewflag,jdbcType=INTEGER}, 
-      #{sortid,jdbcType=INTEGER}, #{addrflage,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{sortid,jdbcType=INTEGER}, #{addrflage,jdbcType=INTEGER}, #{source,jdbcType=VARCHAR}, 
       #{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{clicknum,jdbcType=INTEGER}, 
       #{publishtime,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{seokeyword,jdbcType=VARCHAR}, 
       #{seodescription,jdbcType=VARCHAR}, #{outid,jdbcType=INTEGER}, #{filepath,jdbcType=VARCHAR}, 
@@ -276,7 +276,7 @@
         #{sortid,jdbcType=INTEGER},
       </if>
       <if test="addrflage != null" >
-        #{addrflage,jdbcType=VARCHAR},
+        #{addrflage,jdbcType=INTEGER},
       </if>
       <if test="source != null" >
         #{source,jdbcType=VARCHAR},
@@ -374,7 +374,7 @@
         sortId = #{record.sortid,jdbcType=INTEGER},
       </if>
       <if test="record.addrflage != null" >
-        addrflage = #{record.addrflage,jdbcType=VARCHAR},
+        addrflage = #{record.addrflage,jdbcType=INTEGER},
       </if>
       <if test="record.source != null" >
         source = #{record.source,jdbcType=VARCHAR},
@@ -459,7 +459,7 @@
       diqu = #{record.diqu,jdbcType=VARCHAR},
       viewFlag = #{record.viewflag,jdbcType=INTEGER},
       sortId = #{record.sortid,jdbcType=INTEGER},
-      addrflage = #{record.addrflage,jdbcType=VARCHAR},
+      addrflage = #{record.addrflage,jdbcType=INTEGER},
       source = #{record.source,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       author = #{record.author,jdbcType=VARCHAR},
@@ -494,7 +494,7 @@
       diqu = #{record.diqu,jdbcType=VARCHAR},
       viewFlag = #{record.viewflag,jdbcType=INTEGER},
       sortId = #{record.sortid,jdbcType=INTEGER},
-      addrflage = #{record.addrflage,jdbcType=VARCHAR},
+      addrflage = #{record.addrflage,jdbcType=INTEGER},
       source = #{record.source,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       author = #{record.author,jdbcType=VARCHAR},
@@ -535,7 +535,7 @@
         sortId = #{sortid,jdbcType=INTEGER},
       </if>
       <if test="addrflage != null" >
-        addrflage = #{addrflage,jdbcType=VARCHAR},
+        addrflage = #{addrflage,jdbcType=INTEGER},
       </if>
       <if test="source != null" >
         source = #{source,jdbcType=VARCHAR},
@@ -617,7 +617,7 @@
     set diqu = #{diqu,jdbcType=VARCHAR},
       viewFlag = #{viewflag,jdbcType=INTEGER},
       sortId = #{sortid,jdbcType=INTEGER},
-      addrflage = #{addrflage,jdbcType=VARCHAR},
+      addrflage = #{addrflage,jdbcType=INTEGER},
       source = #{source,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       author = #{author,jdbcType=VARCHAR},
@@ -649,7 +649,7 @@
     set diqu = #{diqu,jdbcType=VARCHAR},
       viewFlag = #{viewflag,jdbcType=INTEGER},
       sortId = #{sortid,jdbcType=INTEGER},
-      addrflage = #{addrflage,jdbcType=VARCHAR},
+      addrflage = #{addrflage,jdbcType=INTEGER},
       source = #{source,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       author = #{author,jdbcType=VARCHAR},
@@ -675,7 +675,7 @@
       out_id = #{outId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  
+
   <select id="findBySeTi" parameterType="com.hqhw.pojo.News" resultType="com.hqhw.pojo.News">
   		select * from news where 
   		<if test="seokeyword != null" >
@@ -686,7 +686,11 @@
       </if>
   </select>
   
-  	<select id="findBySort" parameterType="String" resultType="com.hqhw.pojo.News">
-		select id, title from news where sortid = (select id from newSort where name = #{name}) and viewflag = 1 ORDER BY id DESC LIMIT 1
+  <select id="findBySort" parameterType="String" resultType="com.hqhw.pojo.News">
+	select id, title from news where sortid = (select id from newSort where name = #{name}) and viewflag = 1 ORDER BY id DESC LIMIT 1
+  </select>
+	
+	<select id="findTopNews" resultType="com.hqhw.pojo.News">
+		select id, title from news where addrflage = 1
 	</select>
 </mapper>

@@ -9,7 +9,7 @@ public class News {
 
     private Integer sortid;
 
-    private String addrflage;
+    private Integer addrflage;
 
     private String source;
 
@@ -59,7 +59,7 @@ public class News {
 
     private String content;
 
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -91,12 +91,12 @@ public class News {
         this.sortid = sortid;
     }
 
-    public String getAddrflage() {
+    public Integer getAddrflage() {
         return addrflage;
     }
 
-    public void setAddrflage(String addrflage) {
-        this.addrflage = addrflage == null ? null : addrflage.trim();
+    public void setAddrflage(Integer addrflage) {
+        this.addrflage = addrflage;
     }
 
     public String getSource() {

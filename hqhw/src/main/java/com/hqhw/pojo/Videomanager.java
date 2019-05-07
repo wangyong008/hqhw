@@ -35,72 +35,9 @@ public class Videomanager {
 
     private Integer vediokeep;
 
-    private Date addTime;
+    private Integer addrflage;
 
-    private String nPassReson;
-
-    private String pictureAddress;
-
-    private Integer vedioBad;
-
-    private Integer vedioGood;
-
-    private Integer vedioKeep;
-
-    private Integer vedioNumber;
-
-    private String videoAddress;
-
-    private String videoDescription;
-
-    private String videoKeyWord;
-
-    private Integer viewFlag;
-
-    private Integer belongAccount;
-
-    private Integer belongSort;
-
-    public Videomanager(Integer id, String pictureaddress, String videoaddress, Integer belongsort, String title,
-			String videokeyword, String videodescription, Date addtime, Integer viewflag, Integer belongaccount,
-			String npassreson, String source, Integer vedionumber, Integer vediogood, Integer vediobad,
-			Integer vediokeep, Date addTime2, String nPassReson2, String pictureAddress2, Integer vedioBad2,
-			Integer vedioGood2, Integer vedioKeep2, Integer vedioNumber2, String videoAddress2,
-			String videoDescription2, String videoKeyWord2, Integer viewFlag2, Integer belongAccount2,
-			Integer belongSort2) {
-		super();
-		this.id = id;
-		this.pictureaddress = pictureaddress;
-		this.videoaddress = videoaddress;
-		this.belongsort = belongsort;
-		this.title = title;
-		this.videokeyword = videokeyword;
-		this.videodescription = videodescription;
-		this.addtime = addtime;
-		this.viewflag = viewflag;
-		this.belongaccount = belongaccount;
-		this.npassreson = npassreson;
-		this.source = source;
-		this.vedionumber = vedionumber;
-		this.vediogood = vediogood;
-		this.vediobad = vediobad;
-		this.vediokeep = vediokeep;
-		addTime = addTime2;
-		nPassReson = nPassReson2;
-		pictureAddress = pictureAddress2;
-		vedioBad = vedioBad2;
-		vedioGood = vedioGood2;
-		vedioKeep = vedioKeep2;
-		vedioNumber = vedioNumber2;
-		videoAddress = videoAddress2;
-		videoDescription = videoDescription2;
-		videoKeyWord = videoKeyWord2;
-		viewFlag = viewFlag2;
-		belongAccount = belongAccount2;
-		belongSort = belongSort2;
-	}
-
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -228,107 +165,11 @@ public class Videomanager {
         this.vediokeep = vediokeep;
     }
 
-    public Date getAddTime() {
-        return addTime;
+    public Integer getAddrflage() {
+        return addrflage;
     }
 
-    public void setAddTime(Date addTime) {
-        this.addTime = addTime;
-    }
-
-    public String getnPassReson() {
-        return nPassReson;
-    }
-
-    public void setnPassReson(String nPassReson) {
-        this.nPassReson = nPassReson == null ? null : nPassReson.trim();
-    }
-
-    public String getPictureAddress() {
-        return pictureAddress;
-    }
-
-    public void setPictureAddress(String pictureAddress) {
-        this.pictureAddress = pictureAddress == null ? null : pictureAddress.trim();
-    }
-
-    public Integer getVedioBad() {
-        return vedioBad;
-    }
-
-    public void setVedioBad(Integer vedioBad) {
-        this.vedioBad = vedioBad;
-    }
-
-    public Integer getVedioGood() {
-        return vedioGood;
-    }
-
-    public void setVedioGood(Integer vedioGood) {
-        this.vedioGood = vedioGood;
-    }
-
-    public Integer getVedioKeep() {
-        return vedioKeep;
-    }
-
-    public void setVedioKeep(Integer vedioKeep) {
-        this.vedioKeep = vedioKeep;
-    }
-
-    public Integer getVedioNumber() {
-        return vedioNumber;
-    }
-
-    public void setVedioNumber(Integer vedioNumber) {
-        this.vedioNumber = vedioNumber;
-    }
-
-    public String getVideoAddress() {
-        return videoAddress;
-    }
-
-    public void setVideoAddress(String videoAddress) {
-        this.videoAddress = videoAddress == null ? null : videoAddress.trim();
-    }
-
-    public String getVideoDescription() {
-        return videoDescription;
-    }
-
-    public void setVideoDescription(String videoDescription) {
-        this.videoDescription = videoDescription == null ? null : videoDescription.trim();
-    }
-
-    public String getVideoKeyWord() {
-        return videoKeyWord;
-    }
-
-    public void setVideoKeyWord(String videoKeyWord) {
-        this.videoKeyWord = videoKeyWord == null ? null : videoKeyWord.trim();
-    }
-
-    public Integer getViewFlag() {
-        return viewFlag;
-    }
-
-    public void setViewFlag(Integer viewFlag) {
-        this.viewFlag = viewFlag;
-    }
-
-    public Integer getBelongAccount() {
-        return belongAccount;
-    }
-
-    public void setBelongAccount(Integer belongAccount) {
-        this.belongAccount = belongAccount;
-    }
-
-    public Integer getBelongSort() {
-        return belongSort;
-    }
-
-    public void setBelongSort(Integer belongSort) {
-        this.belongSort = belongSort;
+    public void setAddrflage(Integer addrflage) {
+        this.addrflage = addrflage;
     }
 }

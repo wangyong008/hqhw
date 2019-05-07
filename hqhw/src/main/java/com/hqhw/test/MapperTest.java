@@ -1,16 +1,13 @@
 package com.hqhw.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.hqhw.bean.AdvertisementFiles;
-import com.hqhw.dao.AdvertisementFilesMapper;
+import com.hqhw.pojo.Users;
+import com.hqhw.utils.ChangeUtil;
 
 /**
  * 测试dao层的工作
@@ -24,14 +21,11 @@ import com.hqhw.dao.AdvertisementFilesMapper;
 public class MapperTest {
 
 	@Autowired
-	AdvertisementFilesMapper tu;
+	ChangeUtil tu;
 
 	@Test
 	public void save() {
-		List<AdvertisementFiles> l = new ArrayList<AdvertisementFiles>();
-		l = tu.findPAL("a1");
-		for(AdvertisementFiles af : l) {
-			System.out.println(af.getPath());
-		}
+		Users u = new Users();
+		tu.objectToJson(u);
 	}
 }
