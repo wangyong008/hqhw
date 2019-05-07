@@ -24,6 +24,7 @@
 		<property name="password" value="${jdbc.password}"></property>
 	</bean>
 	
+	
 	<!-- 多线程配置 -->
 	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
 		<property name="corePoolSize" value="5" />
