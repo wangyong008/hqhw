@@ -23,6 +23,17 @@
 		<property name="user" value="${jdbc.user}"></property>
 		<property name="password" value="${jdbc.password}"></property>
 	</bean>
+	
+	<!-- 多线程配置 -->
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="5" />
+		<property name="keepAliveSeconds" value="3000" />
+		<property name="maxPoolSize" value="10" />
+		<property name="queueCapacity" value="999" />
+		<property name="rejectedExecutionHandler">
+		<bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+		</property>
+	</bean>
 
 	<!--================== 配置和MyBatis的整合=============== -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
