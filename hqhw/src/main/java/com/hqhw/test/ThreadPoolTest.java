@@ -7,7 +7,6 @@ import java.util.concurrent.Future;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -18,10 +17,7 @@ public class ThreadPoolTest {
 
 	@Autowired
 	ThreadPoolTaskExecutor threadPoolTask;
-	
-	@Autowired
-    private TaskExecutor executor;
-	
+
 	@Test
 	public void callableTest() {
 		Future<Integer> future = threadPoolTask.submit(new Callable<Integer>() {
@@ -43,24 +39,16 @@ public class ThreadPoolTest {
 			e.printStackTrace();
 		}
 	}
-	
-	    
-	    public void filesMng(String path, String fileName) {
-	    	threadPoolTask.execute(new CutFilesThread(path,fileName));
-	    }
-	    
-	    private class CutFilesThread implements Runnable {
-	        private String path;
-	        private String fileName;
-	        private CutFilesThread(String path, String fileName) {
-	            super();
-	            this.path = path;
-	            this.fileName = fileName;
-	        }
-	        @Override
-	        public void run() {
-	            System.out.println("barry... run...");
-	        }
-	    }
-    
+
+	@Test
+	public void runableTest() {
+		for (int i = 0; i < 10; i++) {
+			threadPoolTask.execute(new Runnable() {
+				public void run() {
+					System.out.println("---" + Thread.currentThread().getName());
+				}
+			});
+		}
+	}
+
 }
