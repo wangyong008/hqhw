@@ -1,9 +1,14 @@
 package com.hqhw.dao;
 
-import com.hqhw.pojo.Videomanager;
+import java.util.List;
+
+import com.hqhw.bean.FilesVideomanager;
 
 public interface FilesVideomanagerMapper {
 
 //	查找推荐视频
-	Videomanager findTopVideo();
+	FilesVideomanager findTopVideo();
+	
+//	查找最新除推荐视频以外的十篇视频
+	List<FilesVideomanager> findVideoTen();
 }

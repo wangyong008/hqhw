@@ -3,7 +3,7 @@ package com.hqhw.pojo;
 public class Special {
     private Integer id;
 
-    private String name;
+    private String title;
 
     private String diqu;
 
@@ -11,7 +11,7 @@ public class Special {
 
     private Integer sortid;
 
-    private String addrflage;
+    private Integer addrflage;
 
     private String source;
 
@@ -35,30 +35,7 @@ public class Special {
 
     private String content;
 
-    public Special(Integer id, String name, String diqu, Integer viewflag, Integer sortid, String addrflage,
-			String source, String author, Integer clicknum, String publishtime, String image, String video,
-			String seokeyword, String seodescription, String publishname, Integer sortId2, String content) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.diqu = diqu;
-		this.viewflag = viewflag;
-		this.sortid = sortid;
-		this.addrflage = addrflage;
-		this.source = source;
-		this.author = author;
-		this.clicknum = clicknum;
-		this.publishtime = publishtime;
-		this.image = image;
-		this.video = video;
-		this.seokeyword = seokeyword;
-		this.seodescription = seodescription;
-		this.publishname = publishname;
-		sortId = sortId2;
-		this.content = content;
-	}
-
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -66,12 +43,12 @@ public class Special {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
     public String getDiqu() {
@@ -98,12 +75,12 @@ public class Special {
         this.sortid = sortid;
     }
 
-    public String getAddrflage() {
+    public Integer getAddrflage() {
         return addrflage;
     }
 
-    public void setAddrflage(String addrflage) {
-        this.addrflage = addrflage == null ? null : addrflage.trim();
+    public void setAddrflage(Integer addrflage) {
+        this.addrflage = addrflage;
     }
 
     public String getSource() {

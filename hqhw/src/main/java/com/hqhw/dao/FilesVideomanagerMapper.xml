@@ -4,4 +4,8 @@
 	<select id="findTopVideo" resultType="com.hqhw.bean.FilesVideomanager">
 	  		select v.id, f.path, v.title from files f join videoManager v on v.addrflage = 1 and f.vId = v.id LIMIT 1
 	  </select>
+	  		
+	 <select id="findVideoTen" resultType="com.hqhw.bean.FilesVideomanager">
+	 		select v.id, f.path, v.title from files f join videoManager v on v.addrflage &lt;&gt; 1 and v.viewFlag = 1  and f.vId = v.id order by id desc LIMIT 10
+	 </select> 
 </mapper>

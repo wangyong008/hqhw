@@ -1,18 +1,44 @@
 package com.hqhw.pageLoad.controller;
 
+import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.hqhw.pageLoad.server.Impl.HomepageLoadServerImpl;
 
 @Controller
 @RequestMapping(value = "/load")
 public class HomepageLoadController {
+	
+	@Autowired
+	ThreadPoolTaskExecutor threadPoolTask;
+	
+	@Autowired
+	HomepageLoadServerImpl hsi;
 
-	@RequestMapping(value = "/homepage")
-	public ModelAndView homepageLoad() {
+//	首页加载第一部分	
+	@RequestMapping(value = "/homepageone")
+	@ResponseBody
+	public ModelAndView homepageLoadOneLoad() {
 		
-		return null;
-		
+		ModelAndView mav = new ModelAndView();
+		Future<Map<String, Object>> homePageOne = threadPoolTask.submit(new Callable<Map<String, Object>>() {
+
+			public Map<String, Object> call() throws Exception {
+				return hsi.homepageLoadOne();
+			}
+		});
+		mav.addObject("homePageOne", homePageOne);
+		mav.setViewName("");
+
+		return mav;
 	}
 
 }

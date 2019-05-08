@@ -6,6 +6,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface SpecialMapper {
+	
+//	查找十篇专题
+	List<Special> findSpecialTen();
+	
     int countByExample(SpecialExample example);
 
     int deleteByExample(SpecialExample example);

@@ -3,11 +3,11 @@
 <mapper namespace="com.hqhw.mapper.SpecialMapper" >
   <resultMap id="BaseResultMap" type="com.hqhw.pojo.Special" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="diqu" property="diqu" jdbcType="VARCHAR" />
     <result column="viewflag" property="viewflag" jdbcType="INTEGER" />
     <result column="sortId" property="sortid" jdbcType="INTEGER" />
-    <result column="addrflage" property="addrflage" jdbcType="VARCHAR" />
+    <result column="addrflage" property="addrflage" jdbcType="INTEGER" />
     <result column="source" property="source" jdbcType="VARCHAR" />
     <result column="author" property="author" jdbcType="VARCHAR" />
     <result column="clicknum" property="clicknum" jdbcType="INTEGER" />
@@ -81,7 +81,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, diqu, viewflag, sortId, addrflage, source, author, clicknum, publishtime, 
+    id, title, diqu, viewflag, sortId, addrflage, source, author, clicknum, publishtime, 
     image, video, Seokeyword, Seodescription, publishname, sort_id
   </sql>
   <sql id="Blob_Column_List" >
@@ -136,14 +136,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.hqhw.pojo.Special" >
-    insert into special (id, name, diqu, 
+    insert into special (id, title, diqu, 
       viewflag, sortId, addrflage, 
       source, author, clicknum, 
       publishtime, image, video, 
       Seokeyword, Seodescription, publishname, 
       sort_id, content)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{diqu,jdbcType=VARCHAR}, 
-      #{viewflag,jdbcType=INTEGER}, #{sortid,jdbcType=INTEGER}, #{addrflage,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{diqu,jdbcType=VARCHAR}, 
+      #{viewflag,jdbcType=INTEGER}, #{sortid,jdbcType=INTEGER}, #{addrflage,jdbcType=INTEGER}, 
       #{source,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{clicknum,jdbcType=INTEGER}, 
       #{publishtime,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{video,jdbcType=VARCHAR}, 
       #{seokeyword,jdbcType=VARCHAR}, #{seodescription,jdbcType=VARCHAR}, #{publishname,jdbcType=VARCHAR}, 
@@ -155,8 +155,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="title != null" >
+        title,
       </if>
       <if test="diqu != null" >
         diqu,
@@ -208,8 +208,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
       </if>
       <if test="diqu != null" >
         #{diqu,jdbcType=VARCHAR},
@@ -221,7 +221,7 @@
         #{sortid,jdbcType=INTEGER},
       </if>
       <if test="addrflage != null" >
-        #{addrflage,jdbcType=VARCHAR},
+        #{addrflage,jdbcType=INTEGER},
       </if>
       <if test="source != null" >
         #{source,jdbcType=VARCHAR},
@@ -270,8 +270,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
       </if>
       <if test="record.diqu != null" >
         diqu = #{record.diqu,jdbcType=VARCHAR},
@@ -283,7 +283,7 @@
         sortId = #{record.sortid,jdbcType=INTEGER},
       </if>
       <if test="record.addrflage != null" >
-        addrflage = #{record.addrflage,jdbcType=VARCHAR},
+        addrflage = #{record.addrflage,jdbcType=INTEGER},
       </if>
       <if test="record.source != null" >
         source = #{record.source,jdbcType=VARCHAR},
@@ -326,11 +326,11 @@
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update special
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
       diqu = #{record.diqu,jdbcType=VARCHAR},
       viewflag = #{record.viewflag,jdbcType=INTEGER},
       sortId = #{record.sortid,jdbcType=INTEGER},
-      addrflage = #{record.addrflage,jdbcType=VARCHAR},
+      addrflage = #{record.addrflage,jdbcType=INTEGER},
       source = #{record.source,jdbcType=VARCHAR},
       author = #{record.author,jdbcType=VARCHAR},
       clicknum = #{record.clicknum,jdbcType=INTEGER},
@@ -349,11 +349,11 @@
   <update id="updateByExample" parameterType="map" >
     update special
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
       diqu = #{record.diqu,jdbcType=VARCHAR},
       viewflag = #{record.viewflag,jdbcType=INTEGER},
       sortId = #{record.sortid,jdbcType=INTEGER},
-      addrflage = #{record.addrflage,jdbcType=VARCHAR},
+      addrflage = #{record.addrflage,jdbcType=INTEGER},
       source = #{record.source,jdbcType=VARCHAR},
       author = #{record.author,jdbcType=VARCHAR},
       clicknum = #{record.clicknum,jdbcType=INTEGER},
@@ -371,8 +371,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.hqhw.pojo.Special" >
     update special
     <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
       </if>
       <if test="diqu != null" >
         diqu = #{diqu,jdbcType=VARCHAR},
@@ -384,7 +384,7 @@
         sortId = #{sortid,jdbcType=INTEGER},
       </if>
       <if test="addrflage != null" >
-        addrflage = #{addrflage,jdbcType=VARCHAR},
+        addrflage = #{addrflage,jdbcType=INTEGER},
       </if>
       <if test="source != null" >
         source = #{source,jdbcType=VARCHAR},
@@ -424,11 +424,11 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hqhw.pojo.Special" >
     update special
-    set name = #{name,jdbcType=VARCHAR},
+    set title = #{title,jdbcType=VARCHAR},
       diqu = #{diqu,jdbcType=VARCHAR},
       viewflag = #{viewflag,jdbcType=INTEGER},
       sortId = #{sortid,jdbcType=INTEGER},
-      addrflage = #{addrflage,jdbcType=VARCHAR},
+      addrflage = #{addrflage,jdbcType=INTEGER},
       source = #{source,jdbcType=VARCHAR},
       author = #{author,jdbcType=VARCHAR},
       clicknum = #{clicknum,jdbcType=INTEGER},
@@ -444,11 +444,11 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hqhw.pojo.Special" >
     update special
-    set name = #{name,jdbcType=VARCHAR},
+    set title = #{title,jdbcType=VARCHAR},
       diqu = #{diqu,jdbcType=VARCHAR},
       viewflag = #{viewflag,jdbcType=INTEGER},
       sortId = #{sortid,jdbcType=INTEGER},
-      addrflage = #{addrflage,jdbcType=VARCHAR},
+      addrflage = #{addrflage,jdbcType=INTEGER},
       source = #{source,jdbcType=VARCHAR},
       author = #{author,jdbcType=VARCHAR},
       clicknum = #{clicknum,jdbcType=INTEGER},
@@ -461,4 +461,8 @@
       sort_id = #{sortId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="findSpecialTen" resultType="com.hqhw.pojo.Special">
+  	select id, title from special where viewflag = 1 and addrflage = 0 order by id desc limit 10
+  </select>
 </mapper>

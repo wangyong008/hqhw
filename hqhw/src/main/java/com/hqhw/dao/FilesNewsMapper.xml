@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.dao.FilesNewsMapper" >
+	<select id="findEndSJZXNews" resultType="com.hqhw.bean.FilesNews">
+		select n.id, f.path, n.title from files f join news n on n.id = f.nId and n.sortId = (select id from newSort where name = '社交资讯') ORDER BY id desc limit 1
+	</select>
+</mapper>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.dao.FilesPictureMapper" >
+	<select id="findPictureForty" resultType="com.hqhw.bean.FilesPicture">
+		select path from files where id in(select fid from picture order by id desc limit 2)
+	</select>
+</mapper>
