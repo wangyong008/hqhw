@@ -6,6 +6,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface FriendshiplinkMapper {
+	
+//	查找所有友情链接
+	List<Friendshiplink> findAll();
+	
     int countByExample(FriendshiplinkExample example);
 
     int deleteByExample(FriendshiplinkExample example);

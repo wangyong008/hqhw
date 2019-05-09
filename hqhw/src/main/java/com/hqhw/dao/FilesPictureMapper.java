@@ -6,5 +6,6 @@ import com.hqhw.bean.FilesPicture;
 
 public interface FilesPictureMapper {
 
-	List<FilesPicture> findPictureForty();
+//	查找最新的四十张图库图片path
+	List<FilesPicture> findEndPictureForty();
 }

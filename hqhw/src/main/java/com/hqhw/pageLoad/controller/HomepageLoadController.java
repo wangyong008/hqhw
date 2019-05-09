@@ -40,5 +40,23 @@ public class HomepageLoadController {
 
 		return mav;
 	}
+	
+//	首页加载第二部分	
+	@RequestMapping(value = "/homepagetwo")
+	@ResponseBody
+	public ModelAndView homepageLoadTwoLoad() {
+		
+		ModelAndView mav = new ModelAndView();
+		Future<Map<String, Object>> homePageTwo = threadPoolTask.submit(new Callable<Map<String, Object>>() {
+
+			public Map<String, Object> call() throws Exception {
+				return hsi.homepageLoadTwo();
+			}
+		});
+		mav.addObject("homePageOne", homePageTwo);
+		mav.setViewName("");
+
+		return mav;
+	}
 
 }

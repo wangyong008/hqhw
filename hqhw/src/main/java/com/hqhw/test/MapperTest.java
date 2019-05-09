@@ -1,13 +1,19 @@
 package com.hqhw.test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.hqhw.mapper.UsersMapper;
 import com.hqhw.pojo.Users;
 import com.hqhw.utils.ChangeUtil;
+
+import net.sf.json.JSONObject;
 
 /**
  * 测试dao层的工作
@@ -22,10 +28,18 @@ public class MapperTest {
 
 	@Autowired
 	ChangeUtil tu;
+	
+	@Autowired
+	UsersMapper user;
 
 	@Test
 	public void save() {
 		Users u = new Users();
-		tu.objectToJson(u);
+		u = user.fin();
+		JSONObject j = new JSONObject();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("u", u);
+		j = tu.mapToJson(map);
+		System.out.println(j);
 	}
 }

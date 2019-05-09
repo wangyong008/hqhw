@@ -25,6 +25,8 @@ public class Files {
 
     private Integer aid;
 
+    private Integer acid;
+
     public Integer getId() {
         return id;
     }
@@ -111,5 +113,13 @@ public class Files {
 
     public void setAid(Integer aid) {
         this.aid = aid;
+    }
+
+    public Integer getAcid() {
+        return acid;
+    }
+
+    public void setAcid(Integer acid) {
+        this.acid = acid;
     }
 }

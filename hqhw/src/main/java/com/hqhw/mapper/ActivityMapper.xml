@@ -551,4 +551,19 @@
       u_id = #{uId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="findJYHDAcitvityTen" resultType="com.hqhw.pojo.Activity">
+  	select id, name from activity where sortid = (select id from activitysort where name = '交友活动') and id &lt;&lt;
+		(select MAX(id) from activity where sortid = (select id from activitysort where name = '交友活动')) order by id desc limit 10
+  </select>
+  
+  <select id="findHWHDAcitvityTen" resultType="com.hqhw.pojo.Activity">
+  	select id, name from activity where sortid = (select id from activitysort where name = '户外活动') and id &lt;&lt;
+		(select MAX(id) from activity where sortid = (select id from activitysort where name = '户外活动')) order by id desc limit 10
+  </select>
+  	
+  <select id="findSSHDAcitvityTen" resultType="com.hqhw.pojo.Activity">
+  	select id, name from activity where sortid = (select id from activitysort where name = '赛事活动') and id not in
+		(select id from activity where sortid  = (select id from activitysort where name = '赛事活动') order by id desc limit 2) order by id desc limit 10
+  </select>
 </mapper>

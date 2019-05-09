@@ -7,13 +7,6 @@ public class Friendshiplink {
 
     private String link;
 
-    public Friendshiplink(Integer id, String title, String link) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.link = link;
-	}
-
 	public Integer getId() {
         return id;
     }

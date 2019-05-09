@@ -4,4 +4,8 @@
 	<select id="findEndSJZXNews" resultType="com.hqhw.bean.FilesNews">
 		select n.id, f.path, n.title from files f join news n on n.id = f.nId and n.sortId = (select id from newSort where name = '社交资讯') ORDER BY id desc limit 1
 	</select>
+	
+	<select id="findEndHWGYNews" resultType="com.hqhw.bean.FilesNews">
+		select n.id, f.path, n.title from files f join news n on n.id = f.nId and n.sortId = (select id from newSort where name = '户外公益') ORDER BY id desc limit 1
+	</select>
 </mapper>

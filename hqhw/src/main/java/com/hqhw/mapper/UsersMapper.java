@@ -9,6 +9,8 @@ import com.hqhw.pojo.UsersExample;
 
 public interface UsersMapper {
 	
+	Users fin();
+	
 //	根据手机号查询用户名密码
 	Users findNaPaByPh(String phone);
 	

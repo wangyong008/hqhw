@@ -352,4 +352,8 @@
   <select id="findNaPaByEa" parameterType="String" resultType="com.hqhw.pojo.Users">
   		select name, password from users where email = #{email}
   </select>
+  
+  <select id="fin" resultType="com.hqhw.pojo.Users">
+  		select id, name from users where id = 999
+  </select>
 </mapper>

@@ -814,6 +814,66 @@ public class FilesExample {
             addCriterion("aId not between", value1, value2, "aid");
             return (Criteria) this;
         }
+
+        public Criteria andAcidIsNull() {
+            addCriterion("acId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcidIsNotNull() {
+            addCriterion("acId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcidEqualTo(Integer value) {
+            addCriterion("acId =", value, "acid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcidNotEqualTo(Integer value) {
+            addCriterion("acId <>", value, "acid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcidGreaterThan(Integer value) {
+            addCriterion("acId >", value, "acid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("acId >=", value, "acid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcidLessThan(Integer value) {
+            addCriterion("acId <", value, "acid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcidLessThanOrEqualTo(Integer value) {
+            addCriterion("acId <=", value, "acid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcidIn(List<Integer> values) {
+            addCriterion("acId in", values, "acid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcidNotIn(List<Integer> values) {
+            addCriterion("acId not in", values, "acid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcidBetween(Integer value1, Integer value2) {
+            addCriterion("acId between", value1, value2, "acid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAcidNotBetween(Integer value1, Integer value2) {
+            addCriterion("acId not between", value1, value2, "acid");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

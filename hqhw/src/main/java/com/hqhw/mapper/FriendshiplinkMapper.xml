@@ -178,4 +178,8 @@
       link = #{link,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="findAll" resultType="com.hqhw.pojo.Friendshiplink">
+  	select id, title, link from friendshipLink
+  </select>
 </mapper>

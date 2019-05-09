@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.dao.ActivityFilesMapper" >
+  <select id="findEndJYHDActivity" resultType="com.hqhw.bean.ActivityFiles">
+  	select a.id, a.name, f.path from files f join activity a on a.id = f.acId and a.sortid = (SELECT id from activitysort where name = '交友活动') ORDER BY a.id desc LIMIT 1
+  </select>
+  
+  <select id="findLastTwoHWHDActivity" resultType="com.hqhw.bean.ActivityFiles">
+  	select a.id, a.name, f.path from files f join activity a on a.id = f.acId and a.sortid = (SELECT id from activitysort where name = '户外活动') ORDER BY a.id desc LIMIT 1
+  </select>
+  
+  <select id="findEndSSHDActivity" resultType="com.hqhw.bean.ActivityFiles">
+  	select a.id, a.name, f.path from files f join activity a on a.id = f.acId and a.sortid = (SELECT id from activitysort where name = '赛事活动') ORDER BY a.id desc LIMIT 1
+  </select>
+</mapper>

@@ -6,6 +6,16 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface ActivityMapper {
+	
+//	查找除最新两篇外10篇户外活动类型活动的id，name
+	List<Activity> findHWHDAcitvityTen();
+	
+//	查找除最新一篇外10篇赛事活动类型活动的id，name
+	List<Activity> findSSHDAcitvityTen();
+
+//	查找除最新一篇外10篇交友活动类型活动的id，name
+	List<Activity> findJYHDAcitvityTen();
+	
     int countByExample(ActivityExample example);
 
     int deleteByExample(ActivityExample example);

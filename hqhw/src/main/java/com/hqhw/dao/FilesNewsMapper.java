@@ -6,4 +6,7 @@ public interface FilesNewsMapper {
 
 //	查找最新一篇社交资讯类型资讯的id，path，title	
 	FilesNews findEndSJZXNews();
+	
+//	查找最新一篇户外公益类型资讯的id，path，title	
+	FilesNews findEndHWGYNews();
 }

@@ -9,7 +9,4 @@ public interface HomepageLoadServer {
 	
 //	首页加载第二部分
 	public JSONObject homepageLoadTwo();
-	
-//	首页加载第三部分
-	public JSONObject homepageLoadThree();
 }

@@ -9,6 +9,9 @@ import org.apache.ibatis.annotations.Param;
 
 public interface NewsMapper {
 	
+//	查找除最新一篇外的十篇户外公益资讯id，title
+	List<News> findHWGYNewsTen();
+	
 //	查找十篇汽车资讯类型资讯
 	List<News> findQCZXNewsTen();
 	
