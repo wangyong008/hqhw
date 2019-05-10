@@ -1,16 +1,12 @@
 package com.hqhw.mapper;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-
 import com.hqhw.pojo.Users;
 import com.hqhw.pojo.UsersExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface UsersMapper {
-	
-	Users fin();
-	
+
 //	根据手机号查询用户名密码
 	Users findNaPaByPh(String phone);
 	
@@ -34,7 +30,7 @@ public interface UsersMapper {
 	
 //	查询是否存在该手机号
 	String findPhone(String phone);
-	
+
     int countByExample(UsersExample example);
 
     int deleteByExample(UsersExample example);

@@ -14,6 +14,8 @@
     <result column="vId" property="vid" jdbcType="INTEGER" />
     <result column="aId" property="aid" jdbcType="INTEGER" />
     <result column="acId" property="acid" jdbcType="INTEGER" />
+    <result column="adid" property="adid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -74,7 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, newName, position, size, path, uploadTime, uId, nId, vId, aId, acId
+    id, name, newName, position, size, path, uploadTime, uId, nId, vId, aId, acId, adid, 
+    cid
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hqhw.pojo.FilesExample" >
     select
@@ -110,11 +113,13 @@
     insert into files (id, name, newName, 
       position, size, path, 
       uploadTime, uId, nId, 
-      vId, aId, acId)
+      vId, aId, acId, adid, 
+      cid)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{newname,jdbcType=VARCHAR}, 
       #{position,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
       #{uploadtime,jdbcType=TIMESTAMP}, #{uid,jdbcType=INTEGER}, #{nid,jdbcType=INTEGER}, 
-      #{vid,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, #{acid,jdbcType=INTEGER})
+      #{vid,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, #{acid,jdbcType=INTEGER}, #{adid,jdbcType=INTEGER}, 
+      #{cid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.hqhw.pojo.Files" >
     insert into files
@@ -155,6 +160,12 @@
       <if test="acid != null" >
         acId,
       </if>
+      <if test="adid != null" >
+        adid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -192,6 +203,12 @@
       </if>
       <if test="acid != null" >
         #{acid,jdbcType=INTEGER},
+      </if>
+      <if test="adid != null" >
+        #{adid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -240,6 +257,12 @@
       <if test="record.acid != null" >
         acId = #{record.acid,jdbcType=INTEGER},
       </if>
+      <if test="record.adid != null" >
+        adid = #{record.adid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cid != null" >
+        cid = #{record.cid,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -258,7 +281,9 @@
       nId = #{record.nid,jdbcType=INTEGER},
       vId = #{record.vid,jdbcType=INTEGER},
       aId = #{record.aid,jdbcType=INTEGER},
-      acId = #{record.acid,jdbcType=INTEGER}
+      acId = #{record.acid,jdbcType=INTEGER},
+      adid = #{record.adid,jdbcType=INTEGER},
+      cid = #{record.cid,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -299,6 +324,12 @@
       <if test="acid != null" >
         acId = #{acid,jdbcType=INTEGER},
       </if>
+      <if test="adid != null" >
+        adid = #{adid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -314,7 +345,9 @@
       nId = #{nid,jdbcType=INTEGER},
       vId = #{vid,jdbcType=INTEGER},
       aId = #{aid,jdbcType=INTEGER},
-      acId = #{acid,jdbcType=INTEGER}
+      acId = #{acid,jdbcType=INTEGER},
+      adid = #{adid,jdbcType=INTEGER},
+      cid = #{cid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,7 +1,12 @@
 package com.hqhw.other.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -97,5 +102,15 @@ public class LoginController {
 		}
 		return null;
 		
+	}
+	
+	// 登出
+	@RequestMapping("/logout")
+	public void logout(HttpSession session, HttpServletResponse response, HttpServletRequest request) throws IOException {
+		//退出权限验证
+		SecurityUtils.getSubject().logout();
+		//销毁session
+		session.invalidate(); 
+		response.sendRedirect(request.getContextPath()+"/login.jsp");
 	}
 }

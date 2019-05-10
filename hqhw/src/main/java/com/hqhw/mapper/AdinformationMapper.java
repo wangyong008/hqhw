@@ -6,9 +6,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface AdinformationMapper {
-	
+
 //	根据姓名查找管理员
-	List<Adinformation> findByName();
+	List<Adinformation> findByName(String name);
 	
 //	根据id删除
 	void deleteById();
@@ -24,7 +24,7 @@ public interface AdinformationMapper {
 	
 //	根据账号查找加盐密码
 	String findPasswordSalt(String account);
-	
+
     int countByExample(AdinformationExample example);
 
     int deleteByExample(AdinformationExample example);

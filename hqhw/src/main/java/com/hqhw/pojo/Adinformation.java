@@ -39,6 +39,8 @@ public class Adinformation {
 
     private String passwordSalt;
 
+    private Integer sex;
+
     public Integer getId() {
         return id;
     }
@@ -181,5 +183,13 @@ public class Adinformation {
 
     public void setPasswordSalt(String passwordSalt) {
         this.passwordSalt = passwordSalt == null ? null : passwordSalt.trim();
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
     }
 }

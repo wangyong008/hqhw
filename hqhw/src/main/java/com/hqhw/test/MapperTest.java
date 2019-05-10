@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.hqhw.mapper.UsersMapper;
 import com.hqhw.pojo.Users;
 import com.hqhw.utils.ChangeUtil;
+import com.hqhw.utils.NomalUtils;
 
 import net.sf.json.JSONObject;
 
@@ -27,19 +28,10 @@ import net.sf.json.JSONObject;
 public class MapperTest {
 
 	@Autowired
-	ChangeUtil tu;
-	
-	@Autowired
-	UsersMapper user;
+	NomalUtils tu;
 
 	@Test
 	public void save() {
-		Users u = new Users();
-		u = user.fin();
-		JSONObject j = new JSONObject();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("u", u);
-		j = tu.mapToJson(map);
-		System.out.println(j);
+		System.out.println(tu.md5("Hqhw1234!@#$"));
 	}
 }
