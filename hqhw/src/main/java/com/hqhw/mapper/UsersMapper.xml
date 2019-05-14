@@ -371,4 +371,8 @@
   <select id="fin" resultType="com.hqhw.pojo.Users">
   		select id, name from users where id = 999
   </select>
+  
+  <select id="hasAccount" parameterType="String" resultType="String">
+  		select 1 from users where account = #{account}
+  </select>
 </mapper>

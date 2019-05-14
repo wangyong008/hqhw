@@ -9,6 +9,12 @@ import org.apache.ibatis.annotations.Param;
 
 public interface NewsMapper {
 	
+//	根据关键字查找id title
+	List<News> findByKeyWord(String word);
+	
+//	根据word对title进行模糊查找
+	List<News> findByTitleWord(String word);
+	
 //	查找除最新一篇外的十篇户外公益资讯id，title
 	List<News> findHWGYNewsTen();
 	

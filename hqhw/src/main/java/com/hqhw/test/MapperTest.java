@@ -1,6 +1,8 @@
 package com.hqhw.test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
@@ -9,12 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.hqhw.mapper.UsersMapper;
-import com.hqhw.pojo.Users;
-import com.hqhw.utils.ChangeUtil;
 import com.hqhw.utils.NomalUtils;
-
-import net.sf.json.JSONObject;
 
 /**
  * 测试dao层的工作
@@ -32,6 +29,8 @@ public class MapperTest {
 
 	@Test
 	public void save() {
-		System.out.println(tu.md5("Hqhw1234!@#$"));
+		String a = "522132199403290016";
+		System.out.println(a.substring(6, 10));
+		System.out.println(a.substring(10, 12));
 	}
 }

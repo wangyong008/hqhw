@@ -24,7 +24,7 @@ public interface AdinformationMapper {
 	
 //	根据账号查找加盐密码
 	String findPasswordSalt(String account);
-
+	
     int countByExample(AdinformationExample example);
 
     int deleteByExample(AdinformationExample example);

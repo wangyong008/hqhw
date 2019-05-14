@@ -6,6 +6,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface FilesMapper {
+	
+//	查找管理员一张图片地址
+	String findPath(int id);
+	
     int countByExample(FilesExample example);
 
     int deleteByExample(FilesExample example);

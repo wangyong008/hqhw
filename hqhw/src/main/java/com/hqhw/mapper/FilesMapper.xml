@@ -350,4 +350,7 @@
       cid = #{cid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="findPath" parameterType="Integer" resultType="String">
+  	select path from files where adid = #{id}
+  </select>
 </mapper>

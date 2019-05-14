@@ -1,6 +1,6 @@
 package com.hqhw.utils;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
@@ -19,15 +19,16 @@ public class ChangeUtil<T> {
 	
 //	对象转json数组格式字符串
 	public JSONArray objectToJsonarray(T t) {
-		JSONArray json=JSONArray.fromObject(t);
-		return json;
+		return JSONArray.fromObject(t);
 	}
 	
 //	map转json对象格式字符串
-	
-	
 	public JSONObject mapToJson(Map map) {
-		JSONObject json = JSONObject.fromObject(map);
-		return json;
+		return JSONObject.fromObject(map);
+	}
+	
+//	list转json
+	public JSONObject listToJson(List list) {
+		return JSONObject.fromObject(list);
 	}
 }

@@ -47,31 +47,33 @@ public class RegisterController {
 	 * @return
 	 */
 	@RequestMapping(value = "/phone")
-	public String phoneRegister(String phone, HttpSession session) {
+	public String phoneRegister(String phone, String name, String password, HttpSession session) {
 		Users u = new Users();
-		
 		String loginMessige = null;
+		String account = null;
+		Boolean dis = false;
 		
 		if(rsi.findPhone(phone) == true) {
 //			生成相关数据并保存
-			String name = gn.getRandomName();
-			String password = nu.getStringRandom(8);
+			while(dis) {
+				account = nu.getRandom(8);
+				if(um.hasAccount(account).isEmpty()) {
+					dis = true;
+				}
+			}
+			
 			String passwordSalt = nu.md5(password);
-			String comment = "{\"name\":\""+name+"\",\"password\":\""+password+"\"}";
 			u.setName(name);
 			u.setPhone(phone);
 			u.setPasswordSalt(passwordSalt);
 			u.setPassword(password);
-			um.saveNPP(u);
-			
-//			发送账户初始化信息
-			sc.phoneCode("SMS_164266089", phone, comment);
+			um.insertSelective(u);
 			
 //			执行登录
 			loginMessige = ls.Login(name, password);
 			if(loginMessige.equals("登录成功")) {
 				session.setAttribute("name", name);
-				return "";
+				return loginMessige;
 			}
 		}
 		return "该手机号已被注册";
@@ -83,31 +85,33 @@ public class RegisterController {
 	 * @return
 	 */
 	@RequestMapping(value = "/email")
-	public String emailRegister(String email, HttpSession session) {
+	public String emailRegister(String email, String name, String password, HttpSession session) {
 		Users u = new Users();
 		String loginMessige = null;
+		String account = null;
+		Boolean dis = false;
 		
 		if(rsi.findEmail(email) == true) {
-			
 //			生成相关数据并保存
-			String name = gn.getRandomName();
-			String password = nu.getStringRandom(8);
+			while(dis) {
+				account = nu.getRandom(8);
+				if(um.hasAccount(account).isEmpty()) {
+					dis = true;
+				}
+			}
+			
 			String passwordSalt = nu.md5(password);
-			String comment = "您好，您的初始账户名为"+name+",初始密码为"+password+"，您可在个人中心修改个人信息。";
 			u.setName(name);
 			u.setEmail(email);
 			u.setPasswordSalt(passwordSalt);
 			u.setPassword(password);
-			um.saveNEP(u);
-			
-//			发送账户初始化信息
-			sc.emailCode(email, comment);
+			um.insertSelective(u);
 			
 //			执行登录
 			loginMessige = ls.Login(name, password);
 			if(loginMessige.equals("登录成功")) {
 				session.setAttribute("name", name);
-				return "";
+				return loginMessige;
 			}
 		}
 		return "该邮箱已被注册";
@@ -124,35 +128,6 @@ public class RegisterController {
 		if(StringUtils.isNotEmpty(um.findName(name))) {
 			return "1";
 		}
-		return "0";
-		
-	}
-	
-	/**
-	 * 用户名注册
-	 * @param name
-	 * @param password
-	 * @return
-	 */
-	@RequestMapping(value = "/name")
-	public String nameRegister(String name, String password, HttpSession session) {
-		if(StringUtils.isNotEmpty(um.findName(name))) {
-//			该用户名已存在
-			return "1";
-		}
-		Users u = new Users();
-		u.setName(name);
-		u.setPassword(password);
-		u.setPasswordSalt(nu.md5(password));
-		um.insertSelective(u);
-		
-//		执行登录
-		String loginMessige = ls.Login(name, password);
-		if(loginMessige.equals("登录成功")) {
-			session.setAttribute("name", name);
-			return "";
-		}
-		
 		return "0";
 		
 	}

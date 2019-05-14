@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.dao.DepartmentDutieMapper" >
+	<select id="findByAid" parameterType="Integer" resultType="com.hqhw.bean.DepartmentDutie">
+		select de.`name` department, du.`name` dutie from 
+			department de, dutie du, (select deid, duid from adinformation_department_dutie where aid = #{id}) d 
+				where de.id = d.deid and du.id = d.duid
+	</select>
+</mapper>

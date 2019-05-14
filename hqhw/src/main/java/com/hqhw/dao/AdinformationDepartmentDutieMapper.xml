@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqhw.dao.AdinformationFilesMapper" >
+	<select id="findByName" resultType="com.hqhw.bean.AdinformationDepartmentDutie">
+		 select a.`name`, a.sex, a.education, a.idCard, a.phone, a.workarea, de.`name` department, d.`name` dutie
+			from ((adinformation a left join adinformation_department_dutie ad on a.id = ad.aid ) 
+				left join dutie d on d.did = ad.duid) LEFT join department de on de.id = ad.deid
+	</select>
+</mapper>

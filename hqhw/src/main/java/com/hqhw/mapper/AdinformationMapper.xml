@@ -16,11 +16,13 @@
     <result column="power" property="power" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="working" property="working" jdbcType="VARCHAR" />
-    <result column="Column_14" property="column14" jdbcType="CHAR" />
+    <result column="dutie" property="dutie" jdbcType="VARCHAR" />
     <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="password_salt" property="passwordSalt" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="workarea" property="workarea" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -82,7 +84,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, type, idCard, substation, state, name, phone, qq, email, addTime, lastTime, power, 
-    remark, working, Column_14, account, password, password_salt, sex
+    remark, working, dutie, account, password, password_salt, sex, education, workarea
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hqhw.pojo.AdinformationExample" >
     select
@@ -119,16 +121,16 @@
       substation, state, name, 
       phone, qq, email, addTime, 
       lastTime, power, remark, 
-      working, Column_14, account, 
-      password, password_salt, sex
-      )
+      working, dutie, account, 
+      password, password_salt, sex, 
+      education, workarea)
     values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
       #{substation,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP}, 
       #{lasttime,jdbcType=TIMESTAMP}, #{power,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{working,jdbcType=VARCHAR}, #{column14,jdbcType=CHAR}, #{account,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{passwordSalt,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}
-      )
+      #{working,jdbcType=VARCHAR}, #{dutie,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{passwordSalt,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{education,jdbcType=VARCHAR}, #{workarea,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hqhw.pojo.Adinformation" >
     insert into adinformation
@@ -175,8 +177,8 @@
       <if test="working != null" >
         working,
       </if>
-      <if test="column14 != null" >
-        Column_14,
+      <if test="dutie != null" >
+        dutie,
       </if>
       <if test="account != null" >
         account,
@@ -189,6 +191,12 @@
       </if>
       <if test="sex != null" >
         sex,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="workarea != null" >
+        workarea,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -234,8 +242,8 @@
       <if test="working != null" >
         #{working,jdbcType=VARCHAR},
       </if>
-      <if test="column14 != null" >
-        #{column14,jdbcType=CHAR},
+      <if test="dutie != null" >
+        #{dutie,jdbcType=VARCHAR},
       </if>
       <if test="account != null" >
         #{account,jdbcType=VARCHAR},
@@ -248,6 +256,12 @@
       </if>
       <if test="sex != null" >
         #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="workarea != null" >
+        #{workarea,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -302,8 +316,8 @@
       <if test="record.working != null" >
         working = #{record.working,jdbcType=VARCHAR},
       </if>
-      <if test="record.column14 != null" >
-        Column_14 = #{record.column14,jdbcType=CHAR},
+      <if test="record.dutie != null" >
+        dutie = #{record.dutie,jdbcType=VARCHAR},
       </if>
       <if test="record.account != null" >
         account = #{record.account,jdbcType=VARCHAR},
@@ -316,6 +330,12 @@
       </if>
       <if test="record.sex != null" >
         sex = #{record.sex,jdbcType=INTEGER},
+      </if>
+      <if test="record.education != null" >
+        education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workarea != null" >
+        workarea = #{record.workarea,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -338,11 +358,13 @@
       power = #{record.power,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR},
       working = #{record.working,jdbcType=VARCHAR},
-      Column_14 = #{record.column14,jdbcType=CHAR},
+      dutie = #{record.dutie,jdbcType=VARCHAR},
       account = #{record.account,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       password_salt = #{record.passwordSalt,jdbcType=VARCHAR},
-      sex = #{record.sex,jdbcType=INTEGER}
+      sex = #{record.sex,jdbcType=INTEGER},
+      education = #{record.education,jdbcType=VARCHAR},
+      workarea = #{record.workarea,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -389,8 +411,8 @@
       <if test="working != null" >
         working = #{working,jdbcType=VARCHAR},
       </if>
-      <if test="column14 != null" >
-        Column_14 = #{column14,jdbcType=CHAR},
+      <if test="dutie != null" >
+        dutie = #{dutie,jdbcType=VARCHAR},
       </if>
       <if test="account != null" >
         account = #{account,jdbcType=VARCHAR},
@@ -403,6 +425,12 @@
       </if>
       <if test="sex != null" >
         sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="workarea != null" >
+        workarea = #{workarea,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -422,11 +450,13 @@
       power = #{power,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       working = #{working,jdbcType=VARCHAR},
-      Column_14 = #{column14,jdbcType=CHAR},
+      dutie = #{dutie,jdbcType=VARCHAR},
       account = #{account,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       password_salt = #{passwordSalt,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=INTEGER}
+      sex = #{sex,jdbcType=INTEGER},
+      education = #{education,jdbcType=VARCHAR},
+      workarea = #{workarea,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 

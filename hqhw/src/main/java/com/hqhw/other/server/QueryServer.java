@@ -1,11 +1,15 @@
 package com.hqhw.other.server;
 
+import java.util.List;
+import java.util.Map;
+
+import com.hqhw.pojo.News;
 
 public interface QueryServer {
 
 //	查询人员
-	public String quertPersion(String name);
+	public Map quertPersion(String name);
 	
 //	查询文章
-	public String quertNews(String word);
+	public List<News> quertNews(String word);
 }

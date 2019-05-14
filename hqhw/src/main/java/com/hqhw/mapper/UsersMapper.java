@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Param;
 
 public interface UsersMapper {
 
+//	account重复判断
+	String hasAccount(String account);
+	
 //	根据手机号查询用户名密码
 	Users findNaPaByPh(String phone);
 	

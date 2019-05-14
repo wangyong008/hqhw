@@ -1055,73 +1055,73 @@ public class AdinformationExample {
             return (Criteria) this;
         }
 
-        public Criteria andColumn14IsNull() {
-            addCriterion("Column_14 is null");
+        public Criteria andDutieIsNull() {
+            addCriterion("dutie is null");
             return (Criteria) this;
         }
 
-        public Criteria andColumn14IsNotNull() {
-            addCriterion("Column_14 is not null");
+        public Criteria andDutieIsNotNull() {
+            addCriterion("dutie is not null");
             return (Criteria) this;
         }
 
-        public Criteria andColumn14EqualTo(String value) {
-            addCriterion("Column_14 =", value, "column14");
+        public Criteria andDutieEqualTo(String value) {
+            addCriterion("dutie =", value, "dutie");
             return (Criteria) this;
         }
 
-        public Criteria andColumn14NotEqualTo(String value) {
-            addCriterion("Column_14 <>", value, "column14");
+        public Criteria andDutieNotEqualTo(String value) {
+            addCriterion("dutie <>", value, "dutie");
             return (Criteria) this;
         }
 
-        public Criteria andColumn14GreaterThan(String value) {
-            addCriterion("Column_14 >", value, "column14");
+        public Criteria andDutieGreaterThan(String value) {
+            addCriterion("dutie >", value, "dutie");
             return (Criteria) this;
         }
 
-        public Criteria andColumn14GreaterThanOrEqualTo(String value) {
-            addCriterion("Column_14 >=", value, "column14");
+        public Criteria andDutieGreaterThanOrEqualTo(String value) {
+            addCriterion("dutie >=", value, "dutie");
             return (Criteria) this;
         }
 
-        public Criteria andColumn14LessThan(String value) {
-            addCriterion("Column_14 <", value, "column14");
+        public Criteria andDutieLessThan(String value) {
+            addCriterion("dutie <", value, "dutie");
             return (Criteria) this;
         }
 
-        public Criteria andColumn14LessThanOrEqualTo(String value) {
-            addCriterion("Column_14 <=", value, "column14");
+        public Criteria andDutieLessThanOrEqualTo(String value) {
+            addCriterion("dutie <=", value, "dutie");
             return (Criteria) this;
         }
 
-        public Criteria andColumn14Like(String value) {
-            addCriterion("Column_14 like", value, "column14");
+        public Criteria andDutieLike(String value) {
+            addCriterion("dutie like", value, "dutie");
             return (Criteria) this;
         }
 
-        public Criteria andColumn14NotLike(String value) {
-            addCriterion("Column_14 not like", value, "column14");
+        public Criteria andDutieNotLike(String value) {
+            addCriterion("dutie not like", value, "dutie");
             return (Criteria) this;
         }
 
-        public Criteria andColumn14In(List<String> values) {
-            addCriterion("Column_14 in", values, "column14");
+        public Criteria andDutieIn(List<String> values) {
+            addCriterion("dutie in", values, "dutie");
             return (Criteria) this;
         }
 
-        public Criteria andColumn14NotIn(List<String> values) {
-            addCriterion("Column_14 not in", values, "column14");
+        public Criteria andDutieNotIn(List<String> values) {
+            addCriterion("dutie not in", values, "dutie");
             return (Criteria) this;
         }
 
-        public Criteria andColumn14Between(String value1, String value2) {
-            addCriterion("Column_14 between", value1, value2, "column14");
+        public Criteria andDutieBetween(String value1, String value2) {
+            addCriterion("dutie between", value1, value2, "dutie");
             return (Criteria) this;
         }
 
-        public Criteria andColumn14NotBetween(String value1, String value2) {
-            addCriterion("Column_14 not between", value1, value2, "column14");
+        public Criteria andDutieNotBetween(String value1, String value2) {
+            addCriterion("dutie not between", value1, value2, "dutie");
             return (Criteria) this;
         }
 
@@ -1392,6 +1392,146 @@ public class AdinformationExample {
 
         public Criteria andSexNotBetween(Integer value1, Integer value2) {
             addCriterion("sex not between", value1, value2, "sex");
+            return (Criteria) this;
+        }
+
+        public Criteria andEducationIsNull() {
+            addCriterion("education is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEducationIsNotNull() {
+            addCriterion("education is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEducationEqualTo(String value) {
+            addCriterion("education =", value, "education");
+            return (Criteria) this;
+        }
+
+        public Criteria andEducationNotEqualTo(String value) {
+            addCriterion("education <>", value, "education");
+            return (Criteria) this;
+        }
+
+        public Criteria andEducationGreaterThan(String value) {
+            addCriterion("education >", value, "education");
+            return (Criteria) this;
+        }
+
+        public Criteria andEducationGreaterThanOrEqualTo(String value) {
+            addCriterion("education >=", value, "education");
+            return (Criteria) this;
+        }
+
+        public Criteria andEducationLessThan(String value) {
+            addCriterion("education <", value, "education");
+            return (Criteria) this;
+        }
+
+        public Criteria andEducationLessThanOrEqualTo(String value) {
+            addCriterion("education <=", value, "education");
+            return (Criteria) this;
+        }
+
+        public Criteria andEducationLike(String value) {
+            addCriterion("education like", value, "education");
+            return (Criteria) this;
+        }
+
+        public Criteria andEducationNotLike(String value) {
+            addCriterion("education not like", value, "education");
+            return (Criteria) this;
+        }
+
+        public Criteria andEducationIn(List<String> values) {
+            addCriterion("education in", values, "education");
+            return (Criteria) this;
+        }
+
+        public Criteria andEducationNotIn(List<String> values) {
+            addCriterion("education not in", values, "education");
+            return (Criteria) this;
+        }
+
+        public Criteria andEducationBetween(String value1, String value2) {
+            addCriterion("education between", value1, value2, "education");
+            return (Criteria) this;
+        }
+
+        public Criteria andEducationNotBetween(String value1, String value2) {
+            addCriterion("education not between", value1, value2, "education");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkareaIsNull() {
+            addCriterion("workarea is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkareaIsNotNull() {
+            addCriterion("workarea is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkareaEqualTo(String value) {
+            addCriterion("workarea =", value, "workarea");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkareaNotEqualTo(String value) {
+            addCriterion("workarea <>", value, "workarea");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkareaGreaterThan(String value) {
+            addCriterion("workarea >", value, "workarea");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkareaGreaterThanOrEqualTo(String value) {
+            addCriterion("workarea >=", value, "workarea");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkareaLessThan(String value) {
+            addCriterion("workarea <", value, "workarea");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkareaLessThanOrEqualTo(String value) {
+            addCriterion("workarea <=", value, "workarea");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkareaLike(String value) {
+            addCriterion("workarea like", value, "workarea");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkareaNotLike(String value) {
+            addCriterion("workarea not like", value, "workarea");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkareaIn(List<String> values) {
+            addCriterion("workarea in", values, "workarea");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkareaNotIn(List<String> values) {
+            addCriterion("workarea not in", values, "workarea");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkareaBetween(String value1, String value2) {
+            addCriterion("workarea between", value1, value2, "workarea");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkareaNotBetween(String value1, String value2) {
+            addCriterion("workarea not between", value1, value2, "workarea");
             return (Criteria) this;
         }
     }

@@ -713,4 +713,12 @@
 	<select id="findHWGYTen">
 		select id, title from news where addrflage = 0 and viewFlag = 1 and id &lt;&lt; (select max(id) from news where sortId = (select id from newSort where name = '社交资讯')) and sortId = (select id from newSort where name = '户外公益') order by id desc limit 10
 	</select>
+	
+	<select id="findByTitleWord" parameterType="String" resultType="com.hqhw.pojo.News">
+		select id, title from news where title like #{word}
+	</select>
+	
+	<select id="findByKeyWord" parameterType="String" resultType="com.hqhw.pojo.News">
+		select id, title from news where seokeyword = #{word}
+	</select>
 </mapper>

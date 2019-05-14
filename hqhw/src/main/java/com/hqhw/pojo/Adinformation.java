@@ -31,7 +31,7 @@ public class Adinformation {
 
     private String working;
 
-    private String column14;
+    private String dutie;
 
     private String account;
 
@@ -40,6 +40,10 @@ public class Adinformation {
     private String passwordSalt;
 
     private Integer sex;
+
+    private String education;
+
+    private String workarea;
 
     public Integer getId() {
         return id;
@@ -153,12 +157,12 @@ public class Adinformation {
         this.working = working == null ? null : working.trim();
     }
 
-    public String getColumn14() {
-        return column14;
+    public String getDutie() {
+        return dutie;
     }
 
-    public void setColumn14(String column14) {
-        this.column14 = column14 == null ? null : column14.trim();
+    public void setDutie(String dutie) {
+        this.dutie = dutie == null ? null : dutie.trim();
     }
 
     public String getAccount() {
@@ -191,5 +195,21 @@ public class Adinformation {
 
     public void setSex(Integer sex) {
         this.sex = sex;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education == null ? null : education.trim();
+    }
+
+    public String getWorkarea() {
+        return workarea;
+    }
+
+    public void setWorkarea(String workarea) {
+        this.workarea = workarea == null ? null : workarea.trim();
     }
 }
